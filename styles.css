@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+header {
+  padding: 5px;
+}
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+.taskbtn {
+  width: 10%;
+  padding: 5px;
+}
+#content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr, 1fr;
+  padding: 0px;
+}
+#leftSide {
+  padding: 15px;
+}
+ul {
+  padding: 5px;
+}
+li {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 5px;
+}
+#inbox {
+  padding: 5px;
+  margin: 5px;
+}
+#today {
+  padding: 5px;
+  margin: 5px;
+}
+#nextWeek {
+  padding: 5px;
+  margin: 5px;
+}
+#project {
+  padding: 5px;
+  margin: 5px;
+}
+/* #rightSide{
+
+} */
