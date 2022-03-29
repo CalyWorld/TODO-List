@@ -8,6 +8,7 @@ body {
 }
 header {
   padding: 5px;
+  background-color: #202040;
 }
 #navbar {
   display: flex;
@@ -60,6 +61,73 @@ li {
 #project {
   padding: 5px;
   margin: 5px;
+}
+#form-container {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  right: 50px;
+
+  z-index: 1;
+  padding: 5px;
+}
+#form {
+  display: block;
+  justify-content: center;
+  background-color: white;
+  color: #202040;
+  padding: 5px;
+}
+label{
+    padding: 5px;
+}
+#titlename{
+    margin: 5px;
+}
+input[type="text"],
+select {
+  width: 30%;
+  padding: 8px 16px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #202040;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+#description{
+    background-color: white;
+}
+input[type="date"],
+select {
+  width: 30%;
+  padding: 8px 16px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #202040;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+#form-submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[id="submitbtn"] {
+  width: 20%;
+  background-color: #202040;
+  color: white;
+  padding: 4px 8px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-size: medium;
 }
 /* #rightSide{
 
