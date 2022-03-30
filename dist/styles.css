@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 body {
   margin: 0px;
@@ -66,9 +66,9 @@ li {
   display: none;
   position: absolute;
   top: 50px;
-  left: 50px;
-  right: 50px;
-
+  /* left: 100px; */
+  right: 150px;
+  width: 500px;
   z-index: 1;
   padding: 5px;
 }
@@ -79,11 +79,11 @@ li {
   color: #202040;
   padding: 5px;
 }
-label{
-    padding: 5px;
+label {
+  padding: 5px;
 }
-#titlename{
-    margin: 5px;
+#titlename {
+  margin: 5px;
 }
 input[type="text"],
 select {
@@ -97,8 +97,9 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-#description{
-    background-color: white;
+#description {
+  background-color: white;
+color: black;
 }
 input[type="date"],
 select {
@@ -112,10 +113,10 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-#form-submit{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#form-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 input[id="submitbtn"] {
   width: 20%;
@@ -129,6 +130,38 @@ input[id="submitbtn"] {
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
-/* #rightSide{
+#rightSide{
+    padding: 5px;
+}
 
-} */
+#inboxDiv {
+  display: none;
+  padding: 10px;
+}
+.inbox{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    padding: 5px;
+}
+
+.inbox-exposed{
+    padding: 5px;
+}
+.inbox-Collapse{
+    padding: 5px;
+    display: none;
+}
+p{
+    display: block;
+    align-items: center;
+}
+#todayDiv {
+  display: none;
+}
+#nextWeekDiv {
+  display: none;
+}
