@@ -1,30 +1,47 @@
-// const DOM = (() => {
-
-//   const title = document.getElementById("titlename").value;
-//   const description = document.getElementById("description").value;
-//   const dueDate = document.getElementById("dueDate");
-//   const priority = document.getElementById("priority").value;
-//   const project = document.getElementById("project").value;
-// })();
-
 const openForm = () => {
-  const formContainer = document.getElementById("form-container");
-//   const form = document.getElementById("form");
-  const taskbtn = document.querySelector(".taskbtn");
-  taskbtn.addEventListener("click", () => {
-    if (formContainer.style.display !== "none") {
-        formContainer.style.display="block";
-    //   formContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
-    //   formContainer.style.gridTemplateRows = "1fr 1fr";
-    } else {
-      formContainer.style.display = "block";
-    //   formContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
-    //   formContainer.style.gridTemplateRows = "1fr 1fr";
-    }
-  });
+    const formContainer = document.getElementById("form-container");
+    const taskbtn = document.querySelector(".taskbtn");
+    taskbtn.addEventListener("click", () => {
+        if (formContainer.style.display !== "none") {
+            formContainer.style.display = "block";
+        } else {
+            formContainer.style.display = "block";
+        }
+    });
 };
+const openInbox = () => {
+    const btn = document.querySelectorAll("button");
+    const inboxDiv = document.getElementById("inboxDiv");
+    const todayDiv = document.getElementById("todayDiv");
+    const nextWeekDiv = document.getElementById("nextWeekDiv");
+    btn.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            if (e.target.id === "inbox") {
+                if ((inboxDiv.style.display = "none")) {
+                    inboxDiv.style.display = "block";
+                    todayDiv.style.display = "none";
+                    nextWeekDiv.style.display = "none";
+                }
+            } else if (e.target.id === "today") {
+                if ((todayDiv.style.display = "none")) {
+                    todayDiv.style.display = "block";
+                    inboxDiv.style.display = "none";
+                    nextWeekDiv.style.display = "none";
+                }
+            } else if (e.target.id === "nextWeek") {
+                if ((nextWeekDiv.style.display = "none")) {
+                    nextWeekDiv.style.display = "block";
+                    inboxDiv.style.display = "none";
+                    todayDiv.style.display = "none";
+                }
+            }
+        });
+    });
+};
+
 const DOMpage = () => {
-  openForm();
+    openForm();
+    openInbox();
 };
 
 export default DOMpage;
