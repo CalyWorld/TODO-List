@@ -29,15 +29,17 @@ const submitForm = () => {
     const submitbtn = document.querySelector("#submitbtn");
     const inboxDiv = document.getElementById("inboxDiv");
     const formContainer = document.getElementById("form-container");
-    const titleHolder = document.createElement("p");
-    const descriptionHolder = document.createElement("p");
-    const dueDateHolder = document.createElement("p");
-    const priorityHolder = document.createElement("p");
+    // const titleHolder = document.createElement("p");
+    // const descriptionHolder = document.createElement("p");
+    // const dueDateHolder = document.createElement("p");
+    // const priorityHolder = document.createElement("p");
 
 
     submitbtn.addEventListener("click", () => {
-        // const inboxCollapse = document.getElementById(".inbox-Collapse");
-        inboxDiv.style.display = "block";
+        const titleHolder = document.createElement("p");
+        const descriptionHolder = document.createElement("p");
+        const dueDateHolder = document.createElement("p");
+        const priorityHolder = document.createElement("p");
         const inbox = document.createElement("div");
         const inboxHeadDiv = document.createElement("div");
         const inboxDeletebtn = document.createElement("button");
@@ -59,28 +61,29 @@ const submitForm = () => {
         inboxHeadDiv.append(inbox);
         inboxDiv.append(inboxHeadDiv);
         formContainer.style.display = "none";
+        inboxDiv.style.display = "block";
         // console.log(inboxCollapse);
     });
 };
 
-const collapseInbox = () => {
+// const collapseInbox = () => {
   
-    const inboxExposed = document.querySelectorAll(".inbox-exposed");
-    const inboxCollapse = document.getElementById(".inbox-Collapse");
-    inboxExposed.forEach((button) => {
-        button.addEventListener("click", e => {
-            // let clickedBox = e.target;
-            // let index = parseInt(clickedBox.getAttribute("id"));
-            if (e.target.id === "0") {
-                if (inboxCollapse.style.display = "none") {
-                    inboxCollapse.style.display = "block";
-                } else {
-                    inboxCollapse.style.display = "none";
-                }
-            }
-        });
-    });
-};
+//     const inboxExposed = document.querySelectorAll(".inbox-exposed");
+//     const inboxCollapse = document.getElementById(".inbox-Collapse");
+//     inboxExposed.forEach((button) => {
+//         button.addEventListener("click", e => {
+//             // let clickedBox = e.target;
+//             // let index = parseInt(clickedBox.getAttribute("id"));
+//             if (e.target.id === "0") {
+//                 if (inboxCollapse.style.display = "none") {
+//                     inboxCollapse.style.display = "block";
+//                 } else {
+//                     inboxCollapse.style.display = "none";
+//                 }
+//             }
+//         });
+//     });
+// };
 
 
 
@@ -88,7 +91,7 @@ const collapseInbox = () => {
 
 const Logicpage = () => {
     submitForm();
-    collapseInbox();
+    // collapseInbox();
 };
 
 export default Logicpage;
