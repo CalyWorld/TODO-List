@@ -29,16 +29,31 @@ const createContent = () => {
   const nextWeekbtn = document.createElement("button");
   const projectbtn = document.createElement("button");
   const addProjectbtn = document.createElement("button");
+  const inboxDiv = document.createElement("div");
+  const todayDiv = document.createElement("div");
+  const nextWeekDiv = document.createElement("div");
+  const inboxHead = document.createElement("h1");
+  const todayHead = document.createElement("h1");
+  const nextWeekHead = document.createElement("h1");
 
   leftSideSection.setAttribute("id", "leftSide");
   rightSideSection.setAttribute("id", "rightSide");
 
+  inboxDiv.setAttribute("id", "inboxDiv");
+  todayDiv.setAttribute("id", "todayDiv");
+  nextWeekDiv.setAttribute("id", "nextWeekDiv");
+  inboxHead.classList.add("inboxhead");
+  todayHead.classList.add("todayHead");
+  nextWeekHead.classList.add("nextWeekHead");
   inboxbtn.setAttribute("id", "inbox");
   todaybtn.setAttribute("id", "today");
   nextWeekbtn.setAttribute("id", "nextWeek");
   projectbtn.setAttribute("id", "project");
   addProjectbtn.setAttribute("id", "addprojectbtn");
 
+  inboxHead.textContent = "Inbox";
+  todayHead.textContent = "Today";
+  nextWeekHead.textContent = "Next 7 days";
   inboxbtn.textContent = "Inbox";
   todaybtn.textContent = "Today";
   nextWeekbtn.textContent = " Next 7 days";
@@ -53,6 +68,13 @@ const createContent = () => {
   projectbtn.append(addProjectbtn);
 
   leftSideSection.append(ul);
+
+  inboxDiv.append(inboxHead);
+  todayDiv.append(todayHead);
+  nextWeekDiv.append(nextWeekHead);
+  rightSideSection.append(inboxDiv);
+  rightSideSection.append(todayDiv);
+  rightSideSection.append(nextWeekDiv);
 
   contentContainer.append(leftSideSection);
   contentContainer.append(rightSideSection);
