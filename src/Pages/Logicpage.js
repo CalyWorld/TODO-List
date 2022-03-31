@@ -1,97 +1,72 @@
-import Homepage from "./Homepage";
+const list = [];
+let nextListId = 1;
+class Todo {
+    constructor(title, description, dueDate, priority, id) {
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.id = id;
+    }
+}
 
-// const todo = (title, description, dueDate, priority) => {
-//     const getTitle = () => title;
-//     const getDescription = () => description;
-//     const getDuedate = () => dueDate;
-//     const getPriority = () => priority;
-//     return { getTitle, getDescription, getDuedate, getPriority };
-// };
-// const placeValues = () => {
+const addListToLibrary = () => {
+    const titleName = document.getElementById("titlename").value;
+    const descriptionName = document.getElementById("description").value;
+    const dueDateNo = document.getElementById("dueDate").value;
+    const priorityId = document.getElementById("priority").value;
+    let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId);
+    list.push(project);
+    console.log(list);
+    createCard();
+    nextListId++;
+}
 
-//     const title = document.getElementById("titlename").value;
-//     const description = document.getElementById("description").value;
-//     const dueDate = document.getElementById("dueDate");
-//     const priority = document.getElementById("priority").value;
-//     const project = document.getElementById("project").value;
-
-//     const submitbtn = document.querySelector("#submitbtn");
-//     const rightSideSection = document.getElementById("rightSide");
-
-
-// };
-const submitForm = () => {
-    const library = [];
-    const title = document.getElementById("titlename").value;
-    const description = document.getElementById("description").value;
-    const dueDate = document.getElementById("dueDate").value;
-    const priority = document.getElementById("priority").value;
-    const submitbtn = document.querySelector("#submitbtn");
+const createCard = () => {
+    const titleName = document.getElementById("titlename").value;
+    const descriptionName = document.getElementById("description").value;
+    const dueDateNo = document.getElementById("dueDate").value;
+    const priorityId = document.getElementById("priority").value;
     const inboxDiv = document.getElementById("inboxDiv");
     const formContainer = document.getElementById("form-container");
-    // const titleHolder = document.createElement("p");
-    // const descriptionHolder = document.createElement("p");
-    // const dueDateHolder = document.createElement("p");
-    // const priorityHolder = document.createElement("p");
-
-
-    submitbtn.addEventListener("click", () => {
-        const titleHolder = document.createElement("p");
-        const descriptionHolder = document.createElement("p");
-        const dueDateHolder = document.createElement("p");
-        const priorityHolder = document.createElement("p");
-        const inbox = document.createElement("div");
-        const inboxHeadDiv = document.createElement("div");
-        const inboxDeletebtn = document.createElement("button");
-
-        inboxHeadDiv.setAttribute("id", library.length++);
-        inbox.classList.add("inbox-Collapse");
-        inboxHeadDiv.classList.add("inbox-exposed");
-        titleHolder.textContent = `Title: ${title}`;
-        descriptionHolder.textContent = `Description: ${description}`;
-        dueDateHolder.textContent = `Due Date: ${dueDate}`;
-        priorityHolder.textContent = `Priority: ${priority}`;
-        inboxDeletebtn.textContent = "Delete"
-        inboxHeadDiv.append(title);
-        inboxHeadDiv.append(inboxDeletebtn);
-        inbox.append(titleHolder);
-        inbox.append(descriptionHolder);
-        inbox.append(dueDateHolder);
-        inbox.append(priorityHolder);
-        inboxHeadDiv.append(inbox);
-        inboxDiv.append(inboxHeadDiv);
-        formContainer.style.display = "none";
-        inboxDiv.style.display = "block";
-        // console.log(inboxCollapse);
-    });
+    const titleHolder = document.createElement("p");
+    const descriptionHolder = document.createElement("p");
+    const dueDateHolder = document.createElement("p");
+    const priorityHolder = document.createElement("p");
+    const inbox = document.createElement("div");
+    const inboxCardDiv = document.createElement("div");
+    const inboxExposedDiv = document.createElement("div");
+    const inboxDeletebtn = document.createElement("button");
+    inboxExposedDiv.setAttribute("id", list.length);
+    inbox.classList.add("inbox-Collapse");
+    inboxCardDiv.classList.add("inbox-Card");
+    inboxExposedDiv.classList.add("inbox-Exposed");
+    titleHolder.textContent = `Title: ${titleName}`;
+    descriptionHolder.textContent = `Description: ${descriptionName}`;
+    dueDateHolder.textContent = `Due Date: ${dueDateNo}`;
+    priorityHolder.textContent = `Priority: ${priorityId}`;
+    inboxDeletebtn.textContent = "Delete";
+    inboxExposedDiv.append(titleName);
+    inboxExposedDiv.append(inboxDeletebtn);
+    inboxCardDiv.append(inboxExposedDiv);
+    inbox.append(titleHolder);
+    inbox.append(descriptionHolder);
+    inbox.append(dueDateHolder);
+    inbox.append(priorityHolder);
+    inboxCardDiv.append(inbox);
+    inboxDiv.append(inboxCardDiv);
+    formContainer.style.display = "none";
+    inboxDiv.style.display = "block";
 };
 
-// const collapseInbox = () => {
-  
-//     const inboxExposed = document.querySelectorAll(".inbox-exposed");
-//     const inboxCollapse = document.getElementById(".inbox-Collapse");
-//     inboxExposed.forEach((button) => {
-//         button.addEventListener("click", e => {
-//             // let clickedBox = e.target;
-//             // let index = parseInt(clickedBox.getAttribute("id"));
-//             if (e.target.id === "0") {
-//                 if (inboxCollapse.style.display = "none") {
-//                     inboxCollapse.style.display = "block";
-//                 } else {
-//                     inboxCollapse.style.display = "none";
-//                 }
-//             }
-//         });
-//     });
-// };
-
-
-
+const submitForm = () => {
+    const submitbtn = document.querySelector("#submitbtn");
+    submitbtn.addEventListener("click", addListToLibrary);
+}
 
 
 const Logicpage = () => {
     submitForm();
-    // collapseInbox();
 };
 
 export default Logicpage;
