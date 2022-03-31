@@ -36,13 +36,13 @@ const openInbox = () => {
                     todayDiv.style.display = "none";
                 }
             }
-                else if(e.target.id === "project"){
-                    if(projectList.style.display != "none"){
-                        projectList.style.display = "none";
-                    }else{
-                        projectList.style.display = "flex";
-                    }
+            else if (e.target.id === "project") {
+                if (projectList.style.display != "none") {
+                    projectList.style.display = "none";
+                } else {
+                    projectList.style.display = "flex";
                 }
+            }
         });
     });
 };
@@ -83,7 +83,7 @@ const addProject = () => {
         input.setAttribute("id", "projectId");
         addprojectbtn.setAttribute("type", "button");
         closeprojectbtn.setAttribute("type", "button");
-        label.textContent ="Project Name:";
+        label.textContent = "Project Name:";
 
 
         projectFolder.append(projectHead);
@@ -98,15 +98,26 @@ const addProject = () => {
         projectbtnHolder.append(addprojectbtn);
 
         content.append(projectFolder);
-        
+
     });
-
-
 }
+const closeForm = () => {
+    const closeForm = document.querySelector(".closeproject");
+    const form = document.getElementById("projectfolder");
+    closeForm.addEventListener("click", () => {
+        if (form.style.display = "block") {
+            form.style.display = "none";
+        }
+    });
+    return closeForm;
+}
+
 const DOMpage = () => {
     openForm();
     openInbox();
     addProject();
+    closeForm();
+
 };
 
 export default DOMpage;
