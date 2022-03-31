@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 body {
   margin: 0px;
@@ -137,6 +137,7 @@ input[id="submitbtn"] {
 #inboxDiv {
   display: none;
   padding: 10px;
+  cursor: pointer;
 }
 .inbox{
     display: grid;
@@ -148,20 +149,58 @@ input[id="submitbtn"] {
     padding: 5px;
 }
 
-.inbox-exposed{
+.inbox-Card{
     padding: 5px;
+    /* border: 1px solid purple; */
+    margin: 5px;
 }
 .inbox-Collapse{
     padding: 5px;
-    display: block;
+    display: flex;
+    /* border: 1px solid blue; */
+    margin: 5px;
 }
+.inbox-Exposed{
+    /* border: 1px solid yellow; */
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
 p{
     display: block;
     align-items: center;
+    padding: 10px;
 }
 #todayDiv {
   display: none;
+  padding: 10px;
+  cursor: pointer;
 }
 #nextWeekDiv {
   display: none;
+  padding: 10px;
+  cursor: pointer;
+}
+#projectHolder{
+  display: block;
+  cursor: pointer;
+  margin: 5px;
+}
+#projectList{
+  display: none;
+  margin:10px;
+  padding: 10px;
+  align-items: center;
+}
+#addprojectbtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 5px;
+}
+#projectbtn{
+  width: 40%;
 }
