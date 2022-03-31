@@ -37,34 +37,76 @@ const openInbox = () => {
                 }
             }
                 else if(e.target.id === "project"){
-                    if(projectList.style.display = "none"){
+                    if(projectList.style.display != "none"){
+                        projectList.style.display = "none";
+                    }else{
                         projectList.style.display = "flex";
                     }
                 }
         });
     });
 };
+const addProject = () => {
 
-// const CollapseCard = () =>{
-//     const card = document.querySelectorAll("div");
-//     const collapseCard = document.getElementById(".inbox-Collapse");
+    const projectbtn = document.getElementById("projectbtn");
 
-//     card.forEach((button)=>{
-//         button.addEventListener("click", e=>{
-//             if(e.target.className === "inbox-Exposed"){
-//                 if(collapseCard.style.display="block");
-//                 collapseCard.style.display = "none";
-//             }else{
-//                 collapseCard.style.display = "block";
-//             }
-//         });
-//     });
-// };
+    projectbtn.addEventListener("click", () => {
+        const content = document.getElementById("content");
+        const projectFolder = document.createElement("form");
+        const projectHead = document.createElement("h1");
+        const projectLabelHolder = document.createElement("div");
+        const projectbtnHolder = document.createElement("div");
+        const addprojectbtn = document.createElement("button");
+        const closeprojectbtn = document.createElement("button");
 
+        const label = document.createElement("label")
+        const input = document.createElement("input");
+        const br = document.createElement("br");
+
+        projectFolder.setAttribute("id", "projectfolder");
+        projectHead.classList.add("projectTitle");
+        projectLabelHolder.classList.add("projectlabel");
+        projectbtnHolder.classList.add("projectbtnholder");
+
+
+        addprojectbtn.classList.add("addproject");
+        closeprojectbtn.classList.add("closeproject");
+
+        projectHead.textContent = "New Project";
+
+        addprojectbtn.textContent = "submit";
+        closeprojectbtn.textContent = "Close";
+
+        label.setAttribute("for", "project");
+        label.setAttribute("id", "projectlabel");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "projectId");
+        addprojectbtn.setAttribute("type", "button");
+        closeprojectbtn.setAttribute("type", "button");
+        label.textContent ="Project Name:";
+
+
+        projectFolder.append(projectHead);
+        projectFolder.append(projectLabelHolder);
+        projectFolder.append(projectbtnHolder);
+
+        projectLabelHolder.append(label);
+        projectLabelHolder.append(br);
+        projectLabelHolder.append(input);
+
+        projectbtnHolder.append(closeprojectbtn);
+        projectbtnHolder.append(addprojectbtn);
+
+        content.append(projectFolder);
+        
+    });
+
+
+}
 const DOMpage = () => {
     openForm();
     openInbox();
-    // CollapseCard();
+    addProject();
 };
 
 export default DOMpage;
