@@ -10,10 +10,11 @@ const openForm = () => {
     });
 };
 const openInbox = () => {
-    const btn = document.querySelectorAll("button");
+    const btn = document.querySelectorAll("div");
     const inboxDiv = document.getElementById("inboxDiv");
     const todayDiv = document.getElementById("todayDiv");
     const nextWeekDiv = document.getElementById("nextWeekDiv");
+    const projectList = document.getElementById("projectList")
     btn.forEach((button) => {
         button.addEventListener("click", (e) => {
             if (e.target.id === "inbox") {
@@ -35,13 +36,35 @@ const openInbox = () => {
                     todayDiv.style.display = "none";
                 }
             }
+                else if(e.target.id === "project"){
+                    if(projectList.style.display = "none"){
+                        projectList.style.display = "flex";
+                    }
+                }
         });
     });
 };
 
+// const CollapseCard = () =>{
+//     const card = document.querySelectorAll("div");
+//     const collapseCard = document.getElementById(".inbox-Collapse");
+
+//     card.forEach((button)=>{
+//         button.addEventListener("click", e=>{
+//             if(e.target.className === "inbox-Exposed"){
+//                 if(collapseCard.style.display="block");
+//                 collapseCard.style.display = "none";
+//             }else{
+//                 collapseCard.style.display = "block";
+//             }
+//         });
+//     });
+// };
+
 const DOMpage = () => {
     openForm();
     openInbox();
+    // CollapseCard();
 };
 
 export default DOMpage;
