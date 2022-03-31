@@ -57,15 +57,23 @@ const createCard = () => {
     inboxDiv.append(inboxCardDiv);
     formContainer.style.display = "none";
     inboxDiv.style.display = "block";
+
+    inboxExposedDiv.addEventListener("click", e => {
+        if (e.target.className === "inbox-Exposed") {
+            if (inbox.style.display != "none") {
+                inbox.style.display = "none";
+            } else {
+                inbox.style.display = "flex";
+            }
+        }
+    });
+
 };
 
 const submitForm = () => {
     const submitbtn = document.querySelector("#submitbtn");
     submitbtn.addEventListener("click", addListToLibrary);
 }
-
- 
-
 
 const Logicpage = () => {
     submitForm();
