@@ -22,16 +22,23 @@ const createContent = () => {
   const contentContainer = document.getElementById("content");
   const leftSideSection = document.createElement("div");
   const rightSideSection = document.createElement("div");
+
   const ul = document.createElement("ul");
   const list = document.createElement("li");
-  const inboxbtn = document.createElement("button");
-  const todaybtn = document.createElement("button");
-  const nextWeekbtn = document.createElement("button");
-  const projectbtn = document.createElement("button");
+
+  const inboxbtn = document.createElement("div");
+  const todaybtn = document.createElement("div");
+  const nextWeekbtn = document.createElement("div");
+
+  const projectHolder = document.createElement("div");
+  const project = document.createElement("ul");
+  const projectList = document.createElement("li");
   const addProjectbtn = document.createElement("button");
-  const inboxDiv = document.createElement("div");
-  const todayDiv = document.createElement("div");
-  const nextWeekDiv = document.createElement("div");
+
+  const rightinboxDiv = document.createElement("div");
+  const righttodayDiv = document.createElement("div");
+  const rightnextWeekDiv = document.createElement("div");
+
   const inboxHead = document.createElement("h1");
   const todayHead = document.createElement("h1");
   const nextWeekHead = document.createElement("h1");
@@ -39,42 +46,57 @@ const createContent = () => {
   leftSideSection.setAttribute("id", "leftSide");
   rightSideSection.setAttribute("id", "rightSide");
 
-  inboxDiv.setAttribute("id", "inboxDiv");
-  todayDiv.setAttribute("id", "todayDiv");
-  nextWeekDiv.setAttribute("id", "nextWeekDiv");
-  inboxHead.classList.add("inboxhead");
-  todayHead.classList.add("todayHead");
-  nextWeekHead.classList.add("nextWeekHead");
+  rightinboxDiv.setAttribute("id", "inboxDiv");
+  righttodayDiv.setAttribute("id", "todayDiv");
+  rightnextWeekDiv.setAttribute("id", "nextWeekDiv");
+
   inboxbtn.setAttribute("id", "inbox");
   todaybtn.setAttribute("id", "today");
   nextWeekbtn.setAttribute("id", "nextWeek");
-  projectbtn.setAttribute("id", "project");
-  addProjectbtn.setAttribute("id", "addprojectbtn");
+
+  projectHolder.setAttribute("id", "projectHolder");
+  project.setAttribute("id", "project");
+  projectList.setAttribute("id", "projectList");
+  addProjectbtn.setAttribute("id", "projectbtn");
+
+
+  inboxHead.classList.add("inboxhead");
+  todayHead.classList.add("todayHead");
+  nextWeekHead.classList.add("nextWeekHead");
+
+
+
 
   inboxHead.textContent = "Inbox";
   todayHead.textContent = "Today";
   nextWeekHead.textContent = "Next 7 days";
+  project.textContent = "Project";
+
   inboxbtn.textContent = "Inbox";
   todaybtn.textContent = "Today";
   nextWeekbtn.textContent = " Next 7 days";
-  projectbtn.textContent = "Project";
-  addProjectbtn.textContent = " + Add new project";
+
+  addProjectbtn.textContent = " + Add project";
 
   ul.append(list);
   list.append(inboxbtn);
   list.append(todaybtn);
   list.append(nextWeekbtn);
-  list.append(projectbtn);
-  projectbtn.append(addProjectbtn);
+  list.append(projectHolder);
+  projectHolder.append(project);
+  project.append(projectList);
+  projectList.append(addProjectbtn);
+
 
   leftSideSection.append(ul);
 
-  inboxDiv.append(inboxHead);
-  todayDiv.append(todayHead);
-  nextWeekDiv.append(nextWeekHead);
-  rightSideSection.append(inboxDiv);
-  rightSideSection.append(todayDiv);
-  rightSideSection.append(nextWeekDiv);
+  rightinboxDiv.append(inboxHead);
+  righttodayDiv.append(todayHead);
+  rightnextWeekDiv.append(nextWeekHead);
+
+  rightSideSection.append(rightinboxDiv);
+  rightSideSection.append(righttodayDiv);
+  rightSideSection.append(rightnextWeekDiv);
 
   contentContainer.append(leftSideSection);
   contentContainer.append(rightSideSection);
