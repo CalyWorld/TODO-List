@@ -99,25 +99,25 @@ const addProject = () => {
 
         content.append(projectFolder);
 
+        closeprojectbtn.addEventListener("click", () => {
+            if (projectFolder.style.display = "block") {
+                projectFolder.style.display = "none";
+            }
+        });
+
     });
-}
-const closeForm = () => {
-    const closeForm = document.querySelector(".closeproject");
-    const form = document.getElementById("projectfolder");
-    closeForm.addEventListener("click", () => {
-        if (form.style.display = "block") {
-            form.style.display = "none";
-        }
-    });
-    return closeForm;
-}
+};
+
+
+
+
+
 
 const DOMpage = () => {
     openForm();
     openInbox();
     addProject();
-    closeForm();
-
+    // closeForm();
 };
 
 export default DOMpage;
