@@ -1,3 +1,4 @@
+const myId = [];
 const openForm = () => {
     const formContainer = document.getElementById("form-container");
     const taskbtn = document.querySelector(".taskbtn");
@@ -14,7 +15,8 @@ const openInbox = () => {
     const inboxDiv = document.getElementById("inboxDiv");
     const todayDiv = document.getElementById("todayDiv");
     const nextWeekDiv = document.getElementById("nextWeekDiv");
-    const projectList = document.getElementById("projectList")
+    const projectList = document.getElementById("projectList");
+    // const projectListdiv = document.getElementById("#projectListdiv");
     btn.forEach((button) => {
         button.addEventListener("click", (e) => {
             if (e.target.id === "inbox") {
@@ -22,33 +24,38 @@ const openInbox = () => {
                     inboxDiv.style.display = "block";
                     todayDiv.style.display = "none";
                     nextWeekDiv.style.display = "none";
+                    // projectListdiv.style.display = "none";
                 }
             } else if (e.target.id === "today") {
                 if ((todayDiv.style.display = "none")) {
                     todayDiv.style.display = "block";
                     inboxDiv.style.display = "none";
                     nextWeekDiv.style.display = "none";
+                    // projectListdiv.style.display = "none";
                 }
             } else if (e.target.id === "nextWeek") {
                 if ((nextWeekDiv.style.display = "none")) {
                     nextWeekDiv.style.display = "block";
                     inboxDiv.style.display = "none";
                     todayDiv.style.display = "none";
+                    // projectListdiv.style.display = "none";
                 }
             }
             else if (e.target.id === "project") {
                 if (projectList.style.display != "none") {
                     projectList.style.display = "none";
                 } else {
-                    projectList.style.display = "flex";
+                    projectList.style.display = "block";
                 }
             }
         });
     });
+
 };
 const addProject = () => {
 
     const projectbtn = document.getElementById("projectbtn");
+    const projectList = document.getElementById("projectList");
 
     projectbtn.addEventListener("click", () => {
         const content = document.getElementById("content");
@@ -105,11 +112,40 @@ const addProject = () => {
             }
         });
 
+        addprojectbtn.addEventListener("click", () => {
+            const projectDiv = document.createElement("div");
+            projectDiv.textContent = input.value;
+            projectDiv.setAttribute("id", myId.length++);
+            projectList.append(projectDiv);
+            projectFolder.remove();
+            projectList.style.display = "block";
+
+        });
     });
+
 };
 
 
-
+const addDivToList = () => {
+    const projectList = document.querySelectorAll("#projectList");
+    projectList.forEach((div) => {
+        div.addEventListener("click", (e) => {
+            let clickedDiv = e.target;
+            let clickedDivTextContent = e.target.textContent;
+            let index = clickedDiv.getAttribute("id");
+            if (e.target.id === index) {
+                const rightSide = document.getElementById("rightSide");
+                const projectDiv = document.createElement("div");
+                const projectHeadDiv = document.createElement("h1");
+                projectDiv.setAttribute("id", "projectListdiv");
+                projectHeadDiv.classList.add("projectListHead");
+                projectHeadDiv.textContent = clickedDivTextContent;
+                projectDiv.append(projectHeadDiv);
+                rightSide.append(projectDiv);
+            }
+        });
+    });
+};
 
 
 
@@ -117,7 +153,7 @@ const DOMpage = () => {
     openForm();
     openInbox();
     addProject();
-    // closeForm();
+    addDivToList();
 };
 
 export default DOMpage;
