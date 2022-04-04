@@ -15,6 +15,7 @@ const addListToLibrary = () => {
     const descriptionName = document.getElementById("description").value;
     const dueDateNo = document.getElementById("dueDate").value;
     const priorityId = document.getElementById("priority").value;
+    const projectlist = document.getElementById("projectlist");
     let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId);
     list.push(project);
     console.log(list);
@@ -31,6 +32,7 @@ const createCard = () => {
         const descriptionName = document.getElementById("description").value;
         const dueDateNo = document.getElementById("dueDate").value;
         const priorityId = document.getElementById("priority").value;
+       
         const titleHolder = document.createElement("p");
         const descriptionHolder = document.createElement("p");
         const dueDateHolder = document.createElement("p");
@@ -38,10 +40,21 @@ const createCard = () => {
         const inbox = document.createElement("div");
         const inboxCardDiv = document.createElement("div");
         const inboxExposedDiv = document.createElement("div");
+        const inboxExposedBtnDiv = document.createElement("div");
         const inboxDeletebtn = document.createElement("button");
+        const readbtn = document.createElement("button");
+        const movebtn = document.createElement("button");
+        const editbtn = document.createElement("button");
+
         inboxCardDiv.setAttribute("id", `${i.id}`);
         inboxDeletebtn.setAttribute("id", `${i.id}`);
+        inboxExposedBtnDiv.classList.add("inboxExposedbtnContainer");
+        readbtn.setAttribute("id", `${i.id}`);
+        movebtn.setAttribute("id", `${i.id}`);
+        editbtn.setAttribute("id", `${i.id}`);
+
         inbox.classList.add("inbox-Collapse");
+        inbox.style.display = "none";
         inboxCardDiv.classList.add("inbox-Card");
         inboxExposedDiv.classList.add("inbox-Exposed");
         titleHolder.textContent = `Title: ${titleName}`;
@@ -49,8 +62,16 @@ const createCard = () => {
         dueDateHolder.textContent = `Due Date: ${dueDateNo}`;
         priorityHolder.textContent = `Priority: ${priorityId}`;
         inboxDeletebtn.textContent = "Delete";
+        readbtn.textContent = "Read";
+        movebtn.textContent = "Move";
+        editbtn.textContent = "Edit";
+
         inboxExposedDiv.textContent = `${i.title}`;
-        inboxExposedDiv.append(inboxDeletebtn);
+        inboxExposedBtnDiv.append(readbtn);
+        inboxExposedBtnDiv.append(movebtn);
+        inboxExposedBtnDiv.append(editbtn);
+        inboxExposedDiv.append(inboxExposedBtnDiv);
+        inboxExposedBtnDiv.append(inboxDeletebtn);
         inboxCardDiv.append(inboxExposedDiv);
         inbox.append(titleHolder);
         inbox.append(descriptionHolder);
@@ -63,10 +84,10 @@ const createCard = () => {
 
         inboxExposedDiv.addEventListener("click", e => {
             if (e.target.className === "inbox-Exposed") {
-                if (inbox.style.display != "none") {
-                    inbox.style.display = "none";
-                } else {
+                if (inbox.style.display === "none") {
                     inbox.style.display = "flex";
+                } else if(inbox.style.display = "none"){
+                    inbox.style.display = "none";
                 }
             }
         });
