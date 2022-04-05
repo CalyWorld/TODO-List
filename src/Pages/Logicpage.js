@@ -15,7 +15,7 @@ const addListToLibrary = () => {
     const descriptionName = document.getElementById("description").value;
     const dueDateNo = document.getElementById("dueDate").value;
     const priorityId = document.getElementById("priority").value;
-    const projectlist = document.getElementById("projectlist");
+    // const projectlist = document.getElementById("projectlist");
     let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId);
     list.push(project);
     console.log(list);
@@ -90,6 +90,23 @@ const createCard = () => {
                     inbox.style.display = "none";
                 }
             }
+        });
+
+        editbtn.addEventListener("click", ()=>{  
+            const editFormContainer = document.getElementById("editform-container");
+            document.getElementById("editTitlename").value = `${i.title}`;
+            document.getElementById("editdescription").value = `${i.description}`;
+            document.getElementById("editdueDate").value = `${i.dueDate}`;
+            document.getElementById("editpriority").value = `${i.priority}`;
+           
+            editFormContainer.style.display = "block";
+
+          
+
+            
+           
+            console.log(titleName);
+            editFormContainer.style.display = "block";    
         });
 
         inboxDeletebtn.addEventListener("click", e => {
