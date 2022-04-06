@@ -18,21 +18,17 @@ const addListToLibrary = () => {
     // const projectlist = document.getElementById("projectlist");
     let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId);
     list.push(project);
-    console.log(list);
     createCard();
     nextListId++;
 }
 
 const createCard = () => {
     const inboxDiv = document.getElementById("inboxDiv");
+    const editFormContainer = document.querySelector(".editform-container")
+    const updatebtn = document.querySelector(".updatebtn");
     inboxDiv.textContent = "";
     const formContainer = document.getElementById("form-container");
     for (let i of list) {
-        const titleName = document.getElementById("titlename").value;
-        const descriptionName = document.getElementById("description").value;
-        const dueDateNo = document.getElementById("dueDate").value;
-        const priorityId = document.getElementById("priority").value;
-       
         const titleHolder = document.createElement("p");
         const descriptionHolder = document.createElement("p");
         const dueDateHolder = document.createElement("p");
@@ -57,10 +53,10 @@ const createCard = () => {
         inbox.style.display = "none";
         inboxCardDiv.classList.add("inbox-Card");
         inboxExposedDiv.classList.add("inbox-Exposed");
-        titleHolder.textContent = `Title: ${titleName}`;
-        descriptionHolder.textContent = `Description: ${descriptionName}`;
-        dueDateHolder.textContent = `Due Date: ${dueDateNo}`;
-        priorityHolder.textContent = `Priority: ${priorityId}`;
+        titleHolder.textContent = `Title: ${i.title}`;
+        descriptionHolder.textContent = `Description: ${i.descriptionName}`;
+        dueDateHolder.textContent = `Due Date: ${i.dueDateNo}`;
+        priorityHolder.textContent = `Priority: ${i.priorityId}`;
         inboxDeletebtn.textContent = "Delete";
         readbtn.textContent = "Read";
         movebtn.textContent = "Move";
@@ -91,30 +87,42 @@ const createCard = () => {
                 }
             }
         });
-
-        editbtn.addEventListener("click", ()=>{  
-            const editFormContainer = document.getElementById("editform-container");
-            document.getElementById("editTitlename").value = `${i.title}`;
-            document.getElementById("editdescription").value = `${i.description}`;
-            document.getElementById("editdueDate").value = `${i.dueDate}`;
-            document.getElementById("editpriority").value = `${i.priority}`;
-           
+        editbtn.addEventListener("click", (e) => {
+            let clickedlist = e.target;
+            let index = '';
+            index = clickedlist.getAttribute("id");
+            console.log(index);
+            if (e.target.id === index) {
+                document.getElementById("editTitlename").value = `${i.title}`;
+                document.getElementById("editdescription").value = `${i.description}`;
+                document.getElementById("editdueDate").value = `${i.dueDate}`;
+                document.getElementById("editpriority").value = `${i.priority}`;
+            }
+            updatebtn.setAttribute("id", index);
             editFormContainer.style.display = "block";
-
-          
-
-            
-           
-            console.log(titleName);
-            editFormContainer.style.display = "block";    
         });
 
-        inboxDeletebtn.addEventListener("click", e => {
+        inboxDeletebtn.addEventListener("click", () => {
             list.splice(list.findIndex(current=>{
                 return current.id === i.id;
             }), 1);
             inboxDiv.removeChild(inboxCardDiv);
             console.log(list);
+        });
+
+        updatebtn.addEventListener("click", (e) => {
+            const editTitleName = document.getElementById("editTitlename").value;
+            const editdescriptionName = document.getElementById("editdescription").value;
+            const editdueDateNo = document.getElementById("editdueDate").value;
+            const editpriorityId = document.getElementById("editpriority").value;  
+            let objIndex = parseInt(e.target.id);
+            list[objIndex].title = editTitleName;
+            list[objIndex].description = editdescriptionName;
+            list[objIndex].dueDate = editdueDateNo;
+            list[objIndex].editpriorityId = editpriorityId;
+            createCard();
+            editFormContainer.style.display = "none";
+        
         });
 
     };
