@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 body {
   margin: 0px;
@@ -64,7 +64,15 @@ li {
   display: none;
   position: absolute;
   top: 50px;
-  /* left: 100px; */
+  right: 150px;
+  width: 500px;
+  z-index: 1;
+  padding: 5px;
+}
+.editform-container {
+  display: none;
+  position: absolute;
+  top: 50px;
   right: 150px;
   width: 500px;
   z-index: 1;
@@ -77,6 +85,7 @@ li {
   color: #202040;
   padding: 5px;
 }
+
 label {
   padding: 5px;
 }
@@ -97,11 +106,11 @@ select {
 }
 #description {
   background-color: white;
-color: black;
+  color: black;
 }
 input[type="date"],
 select {
-  width: 30%;
+  width: 50%;
   padding: 8px 16px;
   margin: 8px 0;
   display: inline-block;
@@ -128,8 +137,20 @@ input[id="submitbtn"] {
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
-#rightSide{
-    padding: 5px;
+input[class="updatebtn"] {
+  width: 20%;
+  background-color: #202040;
+  color: white;
+  padding: 4px 8px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-size: medium;
+}
+#rightSide {
+  padding: 5px;
 }
 
 #inboxDiv {
@@ -137,39 +158,36 @@ input[id="submitbtn"] {
   padding: 10px;
   cursor: pointer;
 }
-.inbox{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    gap:5px;
-    padding: 5px;
+.inbox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
 }
 
-.inbox-Card{
-    padding: 5px;
-    /* border: 1px solid purple; */
-    margin: 5px;
+.inbox-Card {
+  padding: 5px;
+  margin: 5px;
 }
-.inbox-Collapse{
-    padding: 5px;
-    display: flex;
-    /* border: 1px solid blue; */
-    margin: 5px;
+.inbox-Collapse {
+  padding: 5px;
+  margin: 5px;
 }
-.inbox-Exposed{
-    /* border: 1px solid yellow; */
-    padding: 5px;
-    margin: 5px;
-    display: flex;
-    justify-content: space-between;
+.inbox-Exposed {
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-p{
-    display: block;
-    align-items: center;
-    padding: 10px;
+p {
+  display: block;
+  align-items: center;
+  padding: 10px;
 }
 #todayDiv {
   display: none;
@@ -181,29 +199,30 @@ p{
   padding: 10px;
   cursor: pointer;
 }
-#projectHolder{
+#projectHolder {
   display: block;
   cursor: pointer;
   margin: 5px;
 }
-#projectList{
-  display: none;
-  margin:10px;
+#projectList {
+  margin: 5px;
   padding: 10px;
   align-items: center;
 }
-#addprojectbtn{
+#addprojectbtn {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px;
   padding: 5px;
 }
-#projectbtn{
+
+#projectbtn {
+  margin:  0 0 0 58.5%;
   width: 40%;
 }
 
-#projectfolder{
+#projectfolder {
   display: block;
   position: absolute;
   top: 50px;
@@ -215,28 +234,28 @@ p{
   color: #202040;
   padding: 5px;
 }
-.projectTitle{
+.projectTitle {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.projectlabel{
+.projectlabel {
   padding: 10px;
   height: 100px;
 }
-#projectlabel{
-  margin:5px;
+#projectlabel {
+  margin: 5px;
 }
-#projectId{
+#projectId {
   margin-top: 20px;
 }
-.projectbtnholder{
+.projectbtnholder {
   display: flex;
   justify-content: end;
   padding: 15px;
   gap: 5px;
 }
-.addproject{
+.addproject {
   width: 20%;
   padding: 4px 8px;
   margin: 8px 0;
@@ -246,7 +265,7 @@ p{
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
-.closeproject{
+.closeproject {
   width: 20%;
   padding: 4px 8px;
   margin: 8px 0;
@@ -255,4 +274,23 @@ p{
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
+}
+.inboxExposedbtnContainer{
+  padding: 5px;
+}
+.moveform{
+  display: none;
+  position: absolute;
+  right: 175px;
+  top:100px;
+  bottom: 500px;
+  width: 200px;
+  height: 100px;
+  z-index: 1;
+  padding: 5px;
+  background-color: white;
+  color: #202040;
+}
+.projectLabel{
+  margin:5px;
 }
