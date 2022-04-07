@@ -15,7 +15,6 @@ const addListToLibrary = () => {
     const descriptionName = document.getElementById("description").value;
     const dueDateNo = document.getElementById("dueDate").value;
     const priorityId = document.getElementById("priority").value;
-    // const projectlist = document.getElementById("projectlist");
     let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId);
     list.push(project);
     createCard();
@@ -26,6 +25,7 @@ const createCard = () => {
     const inboxDiv = document.getElementById("inboxDiv");
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
+    const projectList = document.getElementById("projectList");
     inboxDiv.textContent = "";
     const formContainer = document.getElementById("form-container");
     for (let i of list) {
@@ -123,6 +123,25 @@ const createCard = () => {
             createCard();
             editFormContainer.style.display = "none";
         
+        });
+        movebtn.addEventListener("click", ()=>{
+            const moveForm = document.createElement("moveform");
+            const projectLabel = document.createElement("label");
+            const projectSelect = document.createElement("select");
+            const option = document.createElement("option");
+            const projectlist = document.getElementById("projectlist").value;
+      
+            moveForm.append(projectLabel);
+            moveForm.append(projectSelect);
+            projectSelect.append(option);
+            option.append(projectlist);
+
+            moveForm.classList.add("moveform");
+            projectLabel.classList.add("projectLabel");
+            projectLabel.textContent = "Project";
+            moveForm.style.display = "block";
+
+            document.body.append(moveForm);
         });
 
     };

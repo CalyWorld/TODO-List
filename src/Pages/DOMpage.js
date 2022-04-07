@@ -1,4 +1,3 @@
-const myId = [];
 const openForm = () => {
     const formContainer = document.getElementById("form-container");
     const taskbtn = document.querySelector(".taskbtn");
@@ -16,7 +15,7 @@ const openInbox = () => {
     const todayDiv = document.getElementById("todayDiv");
     const nextWeekDiv = document.getElementById("nextWeekDiv");
     const projectList = document.getElementById("projectList");
-    // const projectListdiv = document.getElementById("#projectListdiv");
+    projectList.style.display="none";
     btn.forEach((button) => {
         button.addEventListener("click", (e) => {
             if (e.target.id === "inbox") {
@@ -42,10 +41,10 @@ const openInbox = () => {
                 }
             }
             else if (e.target.id === "project") {
-                if (projectList.style.display != "none") {
-                    projectList.style.display = "none";
-                } else {
+                if (projectList.style.display === "none") {
                     projectList.style.display = "block";
+                } else if(projectList.style.display = "block") {
+                    projectList.style.display = "none";
                 }
             }
         });
@@ -113,11 +112,15 @@ const addProject = () => {
         });
 
         addprojectbtn.addEventListener("click", () => {
-            const projectDiv = document.createElement("div");
-            projectDiv.textContent = input.value;
-            projectDiv.setAttribute("id", myId.length++);
-            projectList.append(projectDiv);
+            const createdProject = document.createElement("div");
+            const select = document.getElementById("projectlist");
+            const option = document.createElement("option");
+            createdProject.setAttribute("id", project);
+            projectList.append(createdProject);
+            createdProject.textContent = input.value;
+            select.append(option);
             projectFolder.remove();
+            option.append(createdProject);
             projectList.style.display = "block";
 
         });
@@ -146,7 +149,6 @@ const addDivToList = () => {
         });
     });
 };
-
 
 
 const DOMpage = () => {

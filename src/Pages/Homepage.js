@@ -85,7 +85,9 @@ const createContent = () => {
   list.append(projectHolder);
   projectHolder.append(project);
   project.append(projectList);
-  projectList.append(addProjectbtn);
+  project.append(addProjectbtn);
+
+  // projectList.append(addProjectbtn);
 
 
   leftSideSection.append(ul);
