@@ -36,13 +36,49 @@
             </select>
             <br />
 
-            <!-- <label for="project">Project:</label>
-            <select id="project">
+            <label for="projectlist">Project:</label>
+            <select id="projectlist">
                 <option value="inbox">Inbox</option>
             </select>
-            <br /> -->
+            <br />
+
             <div id="form-submit">
                 <input type="button" id="submitbtn" value="submit" />
+            </div>
+        </form>
+    </div>
+
+    <div class="editform-container">
+        <form id="form">
+            <label for="titlename">Title: </label>
+            <input type="text" id="editTitlename" placeholder="Enter Title..." name="Title" />
+            <br />
+
+            <label for="description">Description:</label>
+            <textarea id="editdescription" name="description" rows="1" cols="33">
+</textarea>
+            <br />
+
+            <label for="DueDate">Due Date:</label>
+            <input type="date" id="editdueDate" name="DueDate" />
+            <br />
+
+            <label for="priority">Priority:</label>
+            <select id="editpriority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <br />
+
+            <label for="projectlist">Project:</label>
+            <select id="editprojectlist">
+                <option value="inbox">Inbox</option>
+            </select>
+            <br />
+
+            <div id="form-submit">
+                <input type="button" class="updatebtn" value="update" />
             </div>
         </form>
     </div>
