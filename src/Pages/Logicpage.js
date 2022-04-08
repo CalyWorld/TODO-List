@@ -1,12 +1,13 @@
 const list = [];
 let nextListId = 0;
 class Todo {
-    constructor(title, description, dueDate, priority, id) {
+    constructor(title, description, dueDate, priority, id, read) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.id = id;
+        this.read = read;
     }
 }
 
@@ -15,17 +16,27 @@ const addListToLibrary = () => {
     const descriptionName = document.getElementById("description").value;
     const dueDateNo = document.getElementById("dueDate").value;
     const priorityId = document.getElementById("priority").value;
-    let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId);
+    let read = document.getElementById("read").checked;
+    let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId, read);
     list.push(project);
     createCard();
     nextListId++;
+    console.log(list);
 }
+
+Todo.prototype.toggleStatus = function () {
+    if (this.read === true) {
+        this.read = false;
+    } else {
+        this.read = true;
+    }
+};
 
 const createCard = () => {
     const inboxDiv = document.getElementById("inboxDiv");
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
-    const projectList = document.getElementById("projectList");
+    // const projectList = document.getElementById("projectList");
     inboxDiv.textContent = "";
     const formContainer = document.getElementById("form-container");
     for (let i of list) {
@@ -46,6 +57,7 @@ const createCard = () => {
         inboxDeletebtn.setAttribute("id", `${i.id}`);
         inboxExposedBtnDiv.classList.add("inboxExposedbtnContainer");
         readbtn.setAttribute("id", `${i.id}`);
+        readbtn.classList.add("readbtn");
         movebtn.setAttribute("id", `${i.id}`);
         editbtn.setAttribute("id", `${i.id}`);
 
@@ -54,11 +66,11 @@ const createCard = () => {
         inboxCardDiv.classList.add("inbox-Card");
         inboxExposedDiv.classList.add("inbox-Exposed");
         titleHolder.textContent = `Title: ${i.title}`;
-        descriptionHolder.textContent = `Description: ${i.descriptionName}`;
-        dueDateHolder.textContent = `Due Date: ${i.dueDateNo}`;
-        priorityHolder.textContent = `Priority: ${i.priorityId}`;
+        descriptionHolder.textContent = `Description: ${i.description}`;
+        dueDateHolder.textContent = `Due Date: ${i.dueDate}`;
+        priorityHolder.textContent = `Priority: ${i.priority}`;
         inboxDeletebtn.textContent = "Delete";
-        readbtn.textContent = "Read";
+        readbtn.textContent = `Read: ${i.read}`;
         movebtn.textContent = "Move";
         editbtn.textContent = "Edit";
 
@@ -82,11 +94,29 @@ const createCard = () => {
             if (e.target.className === "inbox-Exposed") {
                 if (inbox.style.display === "none") {
                     inbox.style.display = "flex";
-                } else if(inbox.style.display = "none"){
+                } else if (inbox.style.display = "none") {
                     inbox.style.display = "none";
                 }
             }
         });
+
+        inboxDeletebtn.addEventListener("click", () => {
+            list.splice(list.findIndex(current => {
+                return current.id === i.id;
+            }), 1);
+            inboxDiv.removeChild(inboxCardDiv);
+            console.log(list);
+        });
+
+        readbtn.addEventListener("click", () => {
+            list[
+                list.findIndex((current) => {
+                    return current.id === i.id;
+                })].toggleStatus();
+            readbtn.textContent = `Read: ${i.read}`;
+            console.log(list);
+        });
+
         editbtn.addEventListener("click", (e) => {
             let clickedlist = e.target;
             let index = '';
@@ -97,40 +127,37 @@ const createCard = () => {
                 document.getElementById("editdescription").value = `${i.description}`;
                 document.getElementById("editdueDate").value = `${i.dueDate}`;
                 document.getElementById("editpriority").value = `${i.priority}`;
+                document.getElementById("editread").checked = `${i.read}`;
             }
+            console.log(list);
             updatebtn.setAttribute("id", index);
             editFormContainer.style.display = "block";
-        });
-
-        inboxDeletebtn.addEventListener("click", () => {
-            list.splice(list.findIndex(current=>{
-                return current.id === i.id;
-            }), 1);
-            inboxDiv.removeChild(inboxCardDiv);
-            console.log(list);
         });
 
         updatebtn.addEventListener("click", (e) => {
             const editTitleName = document.getElementById("editTitlename").value;
             const editdescriptionName = document.getElementById("editdescription").value;
             const editdueDateNo = document.getElementById("editdueDate").value;
-            const editpriorityId = document.getElementById("editpriority").value;  
+            const editpriorityId = document.getElementById("editpriority").value;
+            let editRead = document.getElementById("editread").checked;
             let objIndex = parseInt(e.target.id);
             list[objIndex].title = editTitleName;
             list[objIndex].description = editdescriptionName;
             list[objIndex].dueDate = editdueDateNo;
-            list[objIndex].editpriorityId = editpriorityId;
+            list[objIndex].priority = editpriorityId;
+            list[objIndex].read = editRead;
             createCard();
+            console.log(list);
             editFormContainer.style.display = "none";
-        
+
         });
-        movebtn.addEventListener("click", ()=>{
+        movebtn.addEventListener("click", () => {
             const moveForm = document.createElement("moveform");
             const projectLabel = document.createElement("label");
             const projectSelect = document.createElement("select");
             const option = document.createElement("option");
             const projectlist = document.getElementById("projectlist").value;
-      
+
             moveForm.append(projectLabel);
             moveForm.append(projectSelect);
             projectSelect.append(option);
