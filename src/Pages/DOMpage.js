@@ -112,15 +112,15 @@ const addProject = () => {
         });
 
         addprojectbtn.addEventListener("click", () => {
-            const createdProject = document.createElement("div");
+            const createdProject = document.createElement("option");
+            createdProject.classList.add("createdProject");
             const select = document.getElementById("projectlist");
-            const option = document.createElement("option");
-            createdProject.setAttribute("id", project);
+            createdProject.setAttribute("id", "newProject");
             projectList.append(createdProject);
             createdProject.textContent = input.value;
-            select.append(option);
+            let selectProjectList2 = createdProject.cloneNode(true);
+            select.append(selectProjectList2);
             projectFolder.remove();
-            option.append(createdProject);
             projectList.style.display = "block";
 
         });
