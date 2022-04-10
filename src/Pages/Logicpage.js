@@ -36,7 +36,9 @@ const createCard = () => {
     const inboxDiv = document.getElementById("inboxDiv");
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
-    // const projectList = document.getElementById("projectList");
+    const projectSelect = document.querySelector("#projectlist");
+    const projectOption = document.querySelector(".select-inbox");
+
     inboxDiv.textContent = "";
     const formContainer = document.getElementById("form-container");
     for (let i of list) {
@@ -60,7 +62,6 @@ const createCard = () => {
         readbtn.classList.add("readbtn");
         movebtn.setAttribute("id", `${i.id}`);
         editbtn.setAttribute("id", `${i.id}`);
-
         inbox.classList.add("inbox-Collapse");
         inbox.style.display = "none";
         inboxCardDiv.classList.add("inbox-Card");
@@ -85,10 +86,19 @@ const createCard = () => {
         inbox.append(descriptionHolder);
         inbox.append(dueDateHolder);
         inbox.append(priorityHolder);
-        inboxCardDiv.append(inbox);
         inboxDiv.append(inboxCardDiv);
+        inboxCardDiv.append(inbox);
         formContainer.style.display = "none";
         inboxDiv.style.display = "block";
+
+
+        // // let inbox2 = inboxCardDiv.cloneNode(true);
+        // // projectOption.append(inbox2);
+        // var logSelected = function () {
+        //     console.log(projectSelect.selectedIndex);
+        // }
+        // logSelected();
+        // projectSelect.addEventListener("change", logSelected);
 
         inboxExposedDiv.addEventListener("click", e => {
             if (e.target.className === "inbox-Exposed") {
@@ -152,20 +162,24 @@ const createCard = () => {
 
         });
         movebtn.addEventListener("click", () => {
-            const moveForm = document.createElement("moveform");
+            const moveForm = document.createElement("form");
             const projectLabel = document.createElement("label");
-            const projectSelect = document.createElement("select");
-            const option = document.createElement("option");
-            const projectlist = document.getElementById("projectlist").value;
-
+            const moveSubmitbtn = document.createElement("input");
+            const projectSelect = document.getElementById("projectlist");
+            var options = document.getElementById("projectlist").options;
+            for(let i = 0; i<options.length; i++){
+                console.log(options[i]);
+            }
+            moveSubmitbtn.setAttribute("type", "button");
+            moveSubmitbtn.setAttribute("id", "moveSubmitbtn");
+            moveSubmitbtn.setAttribute("value", "Move Button");
+            moveForm.classList.add("moveform");
+            projectLabel.classList.add("moveLabel");
+            projectLabel.textContent = "Project:";
             moveForm.append(projectLabel);
             moveForm.append(projectSelect);
-            projectSelect.append(option);
-            option.append(projectlist);
-
-            moveForm.classList.add("moveform");
-            projectLabel.classList.add("projectLabel");
-            projectLabel.textContent = "Project";
+            moveForm.append(moveSubmitbtn);
+            projectSelect.append(options);
             moveForm.style.display = "block";
 
             document.body.append(moveForm);
@@ -176,7 +190,12 @@ const createCard = () => {
 
 const submitForm = () => {
     const submitbtn = document.querySelector("#submitbtn");
-    submitbtn.addEventListener("click", addListToLibrary);
+    // const inboxCardDiv = document.getElementById(".inbox-Card");
+    submitbtn.addEventListener("click", () => {
+        addListToLibrary();
+        // inboxCardDiv.style.display = "none";
+
+    });
 }
 
 const Logicpage = () => {
