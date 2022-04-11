@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  border: 1px solid red;
+  outline: 1px solid red;
 }
 body {
   margin: 0px;
@@ -152,13 +152,12 @@ input[class="updatebtn"] {
 #rightSide {
   padding: 5px;
 }
-
 #inboxDiv {
   display: none;
   padding: 10px;
   cursor: pointer;
 }
-.inbox {
+.inbox{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 1fr;
@@ -167,7 +166,6 @@ input[class="updatebtn"] {
   gap: 5px;
   padding: 5px;
 }
-
 .inbox-Card {
   padding: 5px;
   margin: 5px;
@@ -183,8 +181,7 @@ input[class="updatebtn"] {
   justify-content: space-between;
   align-items: center;
 }
-
-p {
+p{
   display: block;
   align-items: center;
   padding: 10px;
@@ -216,12 +213,10 @@ p {
   margin: 20px;
   padding: 5px;
 }
-
 #projectbtn {
   margin:  0 0 0 58.5%;
   width: 40%;
 }
-
 #projectfolder {
   display: block;
   position: absolute;
@@ -293,4 +288,20 @@ p {
 }
 .projectLabel{
   margin:5px;
+}
+.moveOption{
+  display: block;
+}
+.moveLabel{
+  margin-right: 15px;
+}
+.createdProject{
+  margin:5px;
+}
+.moveSubmitbtnDiv{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px;
 }
