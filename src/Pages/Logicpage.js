@@ -36,9 +36,7 @@ const createCard = () => {
     const inboxDiv = document.getElementById("inboxDiv");
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
-    const projectSelect = document.querySelector("#projectlist");
-    const projectOption = document.querySelector(".select-inbox");
-
+    // const moveSubmitbtn = document.querySelector(".moveSubmitbtn");
     inboxDiv.textContent = "";
     const formContainer = document.getElementById("form-container");
     for (let i of list) {
@@ -61,6 +59,7 @@ const createCard = () => {
         readbtn.setAttribute("id", `${i.id}`);
         readbtn.classList.add("readbtn");
         movebtn.setAttribute("id", `${i.id}`);
+        movebtn.classList.add("movebtn");
         editbtn.setAttribute("id", `${i.id}`);
         inbox.classList.add("inbox-Collapse");
         inbox.style.display = "none";
@@ -90,15 +89,6 @@ const createCard = () => {
         inboxCardDiv.append(inbox);
         formContainer.style.display = "none";
         inboxDiv.style.display = "block";
-
-
-        // // let inbox2 = inboxCardDiv.cloneNode(true);
-        // // projectOption.append(inbox2);
-        // var logSelected = function () {
-        //     console.log(projectSelect.selectedIndex);
-        // }
-        // logSelected();
-        // projectSelect.addEventListener("change", logSelected);
 
         inboxExposedDiv.addEventListener("click", e => {
             if (e.target.className === "inbox-Exposed") {
@@ -161,28 +151,38 @@ const createCard = () => {
             editFormContainer.style.display = "none";
 
         });
-        movebtn.addEventListener("click", () => {
+
+        movebtn.addEventListener("click", () =>{
             const moveForm = document.createElement("form");
             const projectLabel = document.createElement("label");
+            const moveSubmitbtnDiv = document.createElement("div");
             const moveSubmitbtn = document.createElement("input");
             const projectSelect = document.getElementById("projectlist");
-            var options = document.getElementById("projectlist").options;
-            for(let i = 0; i<options.length; i++){
-                console.log(options[i]);
-            }
+            const projectSelectMoveForm = projectSelect.cloneNode(true);
+            var Options = document.getElementById("projectlist").options;
+            moveSubmitbtnDiv.append(moveSubmitbtn);
+            moveSubmitbtnDiv.classList.add("moveSubmitbtnDiv");
             moveSubmitbtn.setAttribute("type", "button");
-            moveSubmitbtn.setAttribute("id", "moveSubmitbtn");
+            moveSubmitbtn.setAttribute("id", `${i.id}`);
             moveSubmitbtn.setAttribute("value", "Move Button");
+            moveSubmitbtn.classList.add("moveSubmitbtn");
             moveForm.classList.add("moveform");
             projectLabel.classList.add("moveLabel");
             projectLabel.textContent = "Project:";
             moveForm.append(projectLabel);
-            moveForm.append(projectSelect);
-            moveForm.append(moveSubmitbtn);
-            projectSelect.append(options);
+            moveForm.append(projectSelectMoveForm);
+            moveForm.append(moveSubmitbtnDiv);
+            projectSelectMoveForm.append(Options);
+            var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
+            console.log(optionChosen);
             moveForm.style.display = "block";
-
             document.body.append(moveForm);
+
+            moveSubmitbtn.addEventListener("click", ()=>{
+                var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
+                console.log(optionChosen);
+                optionChosen.append(inboxCardDiv);
+            });
         });
 
     };
@@ -190,13 +190,10 @@ const createCard = () => {
 
 const submitForm = () => {
     const submitbtn = document.querySelector("#submitbtn");
-    // const inboxCardDiv = document.getElementById(".inbox-Card");
-    submitbtn.addEventListener("click", () => {
-        addListToLibrary();
-        // inboxCardDiv.style.display = "none";
-
-    });
-}
+    submitbtn.addEventListener("click", addListToLibrary);
+};
+    
+    
 
 const Logicpage = () => {
     submitForm();
