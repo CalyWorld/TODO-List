@@ -1,3 +1,4 @@
+const projectArray = [];
 const openForm = () => {
     const formContainer = document.getElementById("form-container");
     const taskbtn = document.querySelector(".taskbtn");
@@ -113,16 +114,14 @@ const addProject = () => {
 
         addprojectbtn.addEventListener("click", () => {
             const createdProject = document.createElement("option");
-            createdProject.classList.add("createdProject");
+            createdProject.setAttribute("id", input.value);
             const select = document.getElementById("projectlist");
-            createdProject.setAttribute("id", "newProject");
             projectList.append(createdProject);
             createdProject.textContent = input.value;
             let selectProjectList2 = createdProject.cloneNode(true);
             select.append(selectProjectList2);
             projectFolder.remove();
             projectList.style.display = "block";
-
         });
     });
 
