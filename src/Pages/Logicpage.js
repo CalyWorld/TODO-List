@@ -36,7 +36,6 @@ const createCard = () => {
     const inboxDiv = document.getElementById("inboxDiv");
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
-    // const moveSubmitbtn = document.querySelector(".moveSubmitbtn");
     inboxDiv.textContent = "";
     const formContainer = document.getElementById("form-container");
     for (let i of list) {
@@ -157,15 +156,21 @@ const createCard = () => {
             const projectLabel = document.createElement("label");
             const moveSubmitbtnDiv = document.createElement("div");
             const moveSubmitbtn = document.createElement("input");
+            const cancelSubmitbtn = document.createElement("input");
             const projectSelect = document.getElementById("projectlist");
             const projectSelectMoveForm = projectSelect.cloneNode(true);
             var Options = document.getElementById("projectlist").options;
             moveSubmitbtnDiv.append(moveSubmitbtn);
+            moveSubmitbtnDiv.append(cancelSubmitbtn);
             moveSubmitbtnDiv.classList.add("moveSubmitbtnDiv");
             moveSubmitbtn.setAttribute("type", "button");
             moveSubmitbtn.setAttribute("id", `${i.id}`);
             moveSubmitbtn.setAttribute("value", "Move Button");
             moveSubmitbtn.classList.add("moveSubmitbtn");
+            cancelSubmitbtn.setAttribute("type", "button");
+            cancelSubmitbtn.setAttribute("id", `${i.id}`);
+            cancelSubmitbtn.setAttribute("value", "Cancel");
+            cancelSubmitbtn.classList.add("cancelSubmitbtn");
             moveForm.classList.add("moveform");
             projectLabel.classList.add("moveLabel");
             projectLabel.textContent = "Project:";
@@ -182,6 +187,11 @@ const createCard = () => {
                 var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
                 console.log(optionChosen);
                 optionChosen.append(inboxCardDiv);
+                moveForm.style.display = "none";
+            });
+
+            cancelSubmitbtn.addEventListener("click", ()=>{
+                moveForm.style.display = "none";
             });
         });
 
