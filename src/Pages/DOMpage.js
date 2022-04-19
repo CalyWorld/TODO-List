@@ -1,4 +1,5 @@
-const projectArray = [];
+const arrayOfProjects = [];
+
 const openForm = () => {
     const formContainer = document.getElementById("form-container");
     const taskbtn = document.querySelector(".taskbtn");
@@ -12,11 +13,11 @@ const openForm = () => {
 };
 const openInbox = () => {
     const btn = document.querySelectorAll("div");
-    const inboxDiv = document.getElementById("inboxDiv");
+    const inboxDiv = document.getElementById(".inboxDiv");
     const todayDiv = document.getElementById("todayDiv");
     const nextWeekDiv = document.getElementById("nextWeekDiv");
     const projectList = document.getElementById("projectList");
-    projectList.style.display="none";
+    projectList.style.display = "none";
     btn.forEach((button) => {
         button.addEventListener("click", (e) => {
             if (e.target.id === "inbox") {
@@ -44,7 +45,7 @@ const openInbox = () => {
             else if (e.target.id === "project") {
                 if (projectList.style.display === "none") {
                     projectList.style.display = "block";
-                } else if(projectList.style.display = "block") {
+                } else if (projectList.style.display = "block") {
                     projectList.style.display = "none";
                 }
             }
@@ -53,10 +54,7 @@ const openInbox = () => {
 
 };
 const addProject = () => {
-
     const projectbtn = document.getElementById("projectbtn");
-    const projectList = document.getElementById("projectList");
-
     projectbtn.addEventListener("click", () => {
         const content = document.getElementById("content");
         const projectFolder = document.createElement("form");
@@ -81,7 +79,7 @@ const addProject = () => {
 
         projectHead.textContent = "New Project";
 
-        addprojectbtn.textContent = "submit";
+        addprojectbtn.textContent = "Submit";
         closeprojectbtn.textContent = "Close";
 
         label.setAttribute("for", "project");
@@ -113,20 +111,31 @@ const addProject = () => {
         });
 
         addprojectbtn.addEventListener("click", () => {
-            const createdProject = document.createElement("option");
-            createdProject.setAttribute("id", input.value);
-            const select = document.getElementById("projectlist");
-            projectList.append(createdProject);
-            createdProject.textContent = input.value;
-            let selectProjectList2 = createdProject.cloneNode(true);
-            select.append(selectProjectList2);
+            createProject();
             projectFolder.remove();
-            projectList.style.display = "block";
         });
     });
 
 };
 
+const createProject = () => {
+    const select = document.getElementById("projectlist");
+    const projectList = document.getElementById("projectList");
+    const projectId = document.getElementById("projectId").value;
+    for (let i = 0; i < arrayOfProjects.length; i++) {
+        var createdProject = document.createElement("div");
+        var projectOption = document.createElement("option");
+        createdProject.setAttribute("id", `${arrayOfProjects.length}`);
+        projectOption.setAttribute("id", `${arrayOfProjects.length}`);
+        projectList.style.display = "block";
+    }
+    createdProject.textContent = projectId;
+    projectOption.textContent = projectId;
+    arrayOfProjects.push(projectOption);
+    select.append(projectOption)
+    projectList.append(createdProject);
+    console.log(arrayOfProjects);
+};
 
 const addDivToList = () => {
     const projectList = document.querySelectorAll("#projectList");
@@ -157,4 +166,5 @@ const DOMpage = () => {
     addDivToList();
 };
 
+export { arrayOfProjects };
 export default DOMpage;
