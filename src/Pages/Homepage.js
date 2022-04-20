@@ -1,3 +1,8 @@
+import { arrayOfProjects } from "./DOMpage";
+export {projectSelectIndex};
+let index;
+const projectSelect = document.getElementById("projectlist");
+
 const createHeader = () => {
   const header = document.createElement("header");
   const navbar = document.createElement("div");
@@ -47,6 +52,7 @@ const createContent = () => {
   rightSideSection.setAttribute("id", "rightSide");
 
   rightinboxDiv.setAttribute("id", "inboxDiv");
+  rightinboxDiv.dataset.dataId = `${arrayOfProjects.length}`
   righttodayDiv.setAttribute("id", "todayDiv");
   rightnextWeekDiv.setAttribute("id", "nextWeekDiv");
 
@@ -87,9 +93,6 @@ const createContent = () => {
   project.append(projectList);
   project.append(addProjectbtn);
 
-  // projectList.append(addProjectbtn);
-
-
   leftSideSection.append(ul);
 
   rightinboxDiv.append(inboxHead);
@@ -106,9 +109,24 @@ const createContent = () => {
   return contentContainer;
 };
 
+const SelectProject = () => {
+  const selectInbox = document.getElementById("select-inbox");
+  arrayOfProjects.push(selectInbox);
+  console.log(arrayOfProjects);
+};
+
+const projectSelectIndex = () =>{
+  index = projectSelect.selectedIndex;
+  return index;
+};
+
+projectSelect.addEventListener("change", projectSelectIndex);
+
 const Homepage = () => {
   document.body.append(createHeader());
   document.body.append(createContent());
+  SelectProject();
 };
+
 
 export default Homepage;
