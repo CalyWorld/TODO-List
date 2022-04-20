@@ -1,3 +1,7 @@
+import { arrayOfProjects } from "./DOMpage";
+import { projectSelectIndex } from "./Homepage";
+// const createdProject = document.getElementById("createdProject");
+// let dataAttribute = createdProject.getAttribute()
 const list = [];
 let nextListId = 0;
 class Todo {
@@ -33,18 +37,20 @@ Todo.prototype.toggleStatus = function () {
 };
 
 const createCard = () => {
+    const formContainer = document.getElementById("form-container");
     const inboxDiv = document.getElementById("inboxDiv");
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
-    inboxDiv.textContent = "";
-    const formContainer = document.getElementById("form-container");
+    var index = projectSelectIndex();
+    var projectDiv = arrayOfProjects[index];
+
     for (let i of list) {
         const titleHolder = document.createElement("p");
         const descriptionHolder = document.createElement("p");
         const dueDateHolder = document.createElement("p");
         const priorityHolder = document.createElement("p");
         const inbox = document.createElement("div");
-        const inboxCardDiv = document.createElement("div");
+        var inboxCardDiv = document.createElement("div");
         const inboxExposedDiv = document.createElement("div");
         const inboxExposedBtnDiv = document.createElement("div");
         const inboxDeletebtn = document.createElement("button");
@@ -54,6 +60,7 @@ const createCard = () => {
 
         inboxCardDiv.setAttribute("id", `${i.id}`);
         inboxDeletebtn.setAttribute("id", `${i.id}`);
+        inboxDeletebtn.classList.add("inboxDeletebtn")
         inboxExposedBtnDiv.classList.add("inboxExposedbtnContainer");
         readbtn.setAttribute("id", `${i.id}`);
         readbtn.classList.add("readbtn");
@@ -84,10 +91,11 @@ const createCard = () => {
         inbox.append(descriptionHolder);
         inbox.append(dueDateHolder);
         inbox.append(priorityHolder);
-        inboxDiv.append(inboxCardDiv);
         inboxCardDiv.append(inbox);
+
         formContainer.style.display = "none";
-        inboxDiv.style.display = "block";
+     
+
 
         inboxExposedDiv.addEventListener("click", e => {
             if (e.target.className === "inbox-Exposed") {
@@ -103,7 +111,7 @@ const createCard = () => {
             list.splice(list.findIndex(current => {
                 return current.id === i.id;
             }), 1);
-            inboxDiv.removeChild(inboxCardDiv);
+            inboxCardDiv.remove();
             console.log(list);
         });
 
@@ -151,62 +159,71 @@ const createCard = () => {
 
         });
 
-        movebtn.addEventListener("click", () =>{
-            const moveForm = document.createElement("form");
-            const projectLabel = document.createElement("label");
-            const moveSubmitbtnDiv = document.createElement("div");
-            const moveSubmitbtn = document.createElement("input");
-            const cancelSubmitbtn = document.createElement("input");
-            const projectSelect = document.getElementById("projectlist");
-            const projectSelectMoveForm = projectSelect.cloneNode(true);
-            var Options = document.getElementById("projectlist").options;
-            moveSubmitbtnDiv.append(moveSubmitbtn);
-            moveSubmitbtnDiv.append(cancelSubmitbtn);
-            moveSubmitbtnDiv.classList.add("moveSubmitbtnDiv");
-            moveSubmitbtn.setAttribute("type", "button");
-            moveSubmitbtn.setAttribute("id", `${i.id}`);
-            moveSubmitbtn.setAttribute("value", "Move Button");
-            moveSubmitbtn.classList.add("moveSubmitbtn");
-            cancelSubmitbtn.setAttribute("type", "button");
-            cancelSubmitbtn.setAttribute("id", `${i.id}`);
-            cancelSubmitbtn.setAttribute("value", "Cancel");
-            cancelSubmitbtn.classList.add("cancelSubmitbtn");
-            moveForm.classList.add("moveform");
-            projectLabel.classList.add("moveLabel");
-            projectLabel.textContent = "Project:";
-            moveForm.append(projectLabel);
-            moveForm.append(projectSelectMoveForm);
-            moveForm.append(moveSubmitbtnDiv);
-            projectSelectMoveForm.append(Options);
-            var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
-            console.log(optionChosen);
-            moveForm.style.display = "block";
-            document.body.append(moveForm);
+        // movebtn.addEventListener("click", () =>{
+        //     const moveForm = document.createElement("form");
+        //     const projectLabel = document.createElement("label");
+        //     const moveSubmitbtnDiv = document.createElement("div");
+        //     const moveSubmitbtn = document.createElement("input");
+        //     const cancelSubmitbtn = document.createElement("input");
+        //     const projectSelect = document.getElementById("projectlist");
+        //     const projectSelectMoveForm = projectSelect.cloneNode(true);
+        //     var Options = document.getElementById("projectlist").options;
+        //     moveSubmitbtnDiv.append(moveSubmitbtn);
+        //     moveSubmitbtnDiv.append(cancelSubmitbtn);
+        //     moveSubmitbtnDiv.classList.add("moveSubmitbtnDiv");
+        //     moveSubmitbtn.setAttribute("type", "button");
+        //     moveSubmitbtn.setAttribute("id", `${i.id}`);
+        //     moveSubmitbtn.setAttribute("value", "Move Button");
+        //     moveSubmitbtn.classList.add("moveSubmitbtn");
+        //     cancelSubmitbtn.setAttribute("type", "button");
+        //     cancelSubmitbtn.setAttribute("id", `${i.id}`);
+        //     cancelSubmitbtn.setAttribute("value", "Cancel");
+        //     cancelSubmitbtn.classList.add("cancelSubmitbtn");
+        //     moveForm.classList.add("moveform");
+        //     projectLabel.classList.add("moveLabel");
+        //     projectLabel.textContent = "Project:";
+        //     moveForm.append(projectLabel);
+        //     moveForm.append(projectSelectMoveForm);
+        //     moveForm.append(moveSubmitbtnDiv);
+        //     projectSelectMoveForm.append(Options);
+        //     var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
+        //     console.log(optionChosen);
+        //     moveForm.style.display = "block";
+        //     document.body.append(moveForm);
 
-            moveSubmitbtn.addEventListener("click", ()=>{
-                var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
-                console.log(optionChosen);
-                optionChosen.append(inboxCardDiv);
-                moveForm.style.display = "none";
-            });
+        //     moveSubmitbtn.addEventListener("click", ()=>{
+        //         var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
+        //         console.log(optionChosen);
+        //         optionChosen.append(inboxCardDiv);
+        //         moveForm.style.display = "none";
+        //     });
 
-            cancelSubmitbtn.addEventListener("click", ()=>{
-                moveForm.style.display = "none";
-            });
-        });
+        //     cancelSubmitbtn.addEventListener("click", ()=>{
+        //         moveForm.style.display = "none";
+        //     });
+        // });
 
-    };
-}
+    }
+
+    if(index === 0){
+        inboxDiv.append(inboxCardDiv);
+        inboxDiv.style.display = "block";
+    }else if(index === parseInt(projectDiv.getAttribute("data-data-Id"))){
+        console.log(index);
+        projectDiv.append(inboxCardDiv);
+    }
+};
 
 const submitForm = () => {
     const submitbtn = document.querySelector("#submitbtn");
     submitbtn.addEventListener("click", addListToLibrary);
 };
-    
-    
+
+
 
 const Logicpage = () => {
     submitForm();
 };
+
 
 export default Logicpage;
