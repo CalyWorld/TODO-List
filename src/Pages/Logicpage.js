@@ -1,9 +1,9 @@
 import { arrayOfProjects } from "./DOMpage";
 import { projectSelectIndex } from "./Homepage";
-// const createdProject = document.getElementById("createdProject");
-// let dataAttribute = createdProject.getAttribute()
 const list = [];
 let nextListId = 0;
+let moveSelectIndex;
+let moveProjectDiv;
 class Todo {
     constructor(title, description, dueDate, priority, id, read) {
         this.title = title;
@@ -39,11 +39,14 @@ Todo.prototype.toggleStatus = function () {
 const createCard = () => {
     const formContainer = document.getElementById("form-container");
     const inboxDiv = document.getElementById("inboxDiv");
+    const projectHolder = document.getElementById("rightProjectHolder")
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
+    const projectlist = document.getElementById("projectlist");
     var index = projectSelectIndex();
+    console.log(index);
     var projectDiv = arrayOfProjects[index];
-
+    console.log(projectDiv);
     for (let i of list) {
         const titleHolder = document.createElement("p");
         const descriptionHolder = document.createElement("p");
@@ -94,7 +97,6 @@ const createCard = () => {
         inboxCardDiv.append(inbox);
 
         formContainer.style.display = "none";
-     
 
 
         inboxExposedDiv.addEventListener("click", e => {
@@ -156,61 +158,71 @@ const createCard = () => {
             createCard();
             console.log(list);
             editFormContainer.style.display = "none";
-
         });
 
-        // movebtn.addEventListener("click", () =>{
-        //     const moveForm = document.createElement("form");
-        //     const projectLabel = document.createElement("label");
-        //     const moveSubmitbtnDiv = document.createElement("div");
-        //     const moveSubmitbtn = document.createElement("input");
-        //     const cancelSubmitbtn = document.createElement("input");
-        //     const projectSelect = document.getElementById("projectlist");
-        //     const projectSelectMoveForm = projectSelect.cloneNode(true);
-        //     var Options = document.getElementById("projectlist").options;
-        //     moveSubmitbtnDiv.append(moveSubmitbtn);
-        //     moveSubmitbtnDiv.append(cancelSubmitbtn);
-        //     moveSubmitbtnDiv.classList.add("moveSubmitbtnDiv");
-        //     moveSubmitbtn.setAttribute("type", "button");
-        //     moveSubmitbtn.setAttribute("id", `${i.id}`);
-        //     moveSubmitbtn.setAttribute("value", "Move Button");
-        //     moveSubmitbtn.classList.add("moveSubmitbtn");
-        //     cancelSubmitbtn.setAttribute("type", "button");
-        //     cancelSubmitbtn.setAttribute("id", `${i.id}`);
-        //     cancelSubmitbtn.setAttribute("value", "Cancel");
-        //     cancelSubmitbtn.classList.add("cancelSubmitbtn");
-        //     moveForm.classList.add("moveform");
-        //     projectLabel.classList.add("moveLabel");
-        //     projectLabel.textContent = "Project:";
-        //     moveForm.append(projectLabel);
-        //     moveForm.append(projectSelectMoveForm);
-        //     moveForm.append(moveSubmitbtnDiv);
-        //     projectSelectMoveForm.append(Options);
-        //     var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
-        //     console.log(optionChosen);
-        //     moveForm.style.display = "block";
-        //     document.body.append(moveForm);
+        movebtn.addEventListener("click", () =>{
+            const moveForm = document.createElement("form");
+            const projectLabel = document.createElement("label");
+            const moveSubmitbtnDiv = document.createElement("div");
+            const moveSubmitbtn = document.createElement("input");
+            const cancelSubmitbtn = document.createElement("input");
 
-        //     moveSubmitbtn.addEventListener("click", ()=>{
-        //         var optionChosen = projectSelectMoveForm.options[projectSelectMoveForm.selectedIndex];
-        //         console.log(optionChosen);
-        //         optionChosen.append(inboxCardDiv);
-        //         moveForm.style.display = "none";
-        //     });
+            moveSubmitbtnDiv.append(moveSubmitbtn);
+            moveSubmitbtnDiv.append(cancelSubmitbtn);
 
-        //     cancelSubmitbtn.addEventListener("click", ()=>{
-        //         moveForm.style.display = "none";
-        //     });
-        // });
+            moveSubmitbtnDiv.classList.add("moveSubmitbtnDiv");
+            moveSubmitbtn.setAttribute("type", "button");
+            moveSubmitbtn.setAttribute("id", `${i.id}`);
+            moveSubmitbtn.setAttribute("value", "Move Button");
+            moveSubmitbtn.classList.add("moveSubmitbtn");
+            cancelSubmitbtn.setAttribute("type", "button");
+            cancelSubmitbtn.setAttribute("id", `${i.id}`);
+            cancelSubmitbtn.setAttribute("value", "Cancel");
+            cancelSubmitbtn.classList.add("cancelSubmitbtn");
+
+            moveForm.classList.add("moveform");
+            projectLabel.classList.add("moveLabel");
+            projectLabel.textContent = "Project:";
+
+            moveForm.append(projectLabel);
+            //problem
+            moveForm.append(projectlist);
+            moveForm.append(moveSubmitbtnDiv);
+
+            moveForm.style.display = "block";
+            document.body.append(moveForm);
+
+            moveSubmitbtn.addEventListener("click", () => {
+                moveSelectIndex = projectlist.selectedIndex;
+                moveProjectDiv = arrayOfProjects[moveSelectIndex];
+                console.log(moveSelectIndex);
+                if (moveSelectIndex === 0){
+                    inboxDiv.append(inboxCardDiv);
+                    console.log(moveSelectIndex);
+                }else if(moveSelectIndex === parseInt(moveProjectDiv.getAttribute("data-data-Id"))){
+                    console.log(moveSelectIndex);
+                    projectDiv.append(inboxCardDiv);
+                }
+                moveForm.remove();
+            });
+
+            cancelSubmitbtn.addEventListener("click", () => {
+                moveForm.style.display = "none";
+            });
+        });
+
 
     }
 
-    if(index === 0){
+    if (index === 0) {
         inboxDiv.append(inboxCardDiv);
         inboxDiv.style.display = "block";
-    }else if(index === parseInt(projectDiv.getAttribute("data-data-Id"))){
+    } else if (index === parseInt(projectDiv.getAttribute("data-data-Id"))) {
         console.log(index);
         projectDiv.append(inboxCardDiv);
+        inboxDiv.style.display = "none";
+        projectDiv.style.display = "block";
+        projectHolder.style.display = "block";
     }
 };
 
