@@ -1,5 +1,6 @@
 import { arrayOfProjects } from "./DOMpage";
 import { projectSelectIndex } from "./Homepage";
+import { compareAsc, format } from 'date-fns'
 const list = [];
 let nextListId = 0;
 let moveSelectIndex;
@@ -21,7 +22,10 @@ const addListToLibrary = () => {
     const dueDateNo = document.getElementById("dueDate").value;
     const priorityId = document.getElementById("priority").value;
     let read = document.getElementById("read").checked;
-    let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId, read);
+    let dateFomart = format(new Date(dueDateNo), "yyyy-MM-dd hh:mm a");
+    const dates = [new Date(dateFomart)]
+    let dateSorted = dates.sort(compareAsc)
+    let project = new Todo(titleName, descriptionName, dateSorted, priorityId, nextListId, read);
     list.push(project);
     createCard();
     nextListId++;
@@ -42,7 +46,7 @@ const createCard = () => {
     const projectHolder = document.getElementById("rightProjectHolder");
     const editFormContainer = document.querySelector(".editform-container")
     const updatebtn = document.querySelector(".updatebtn");
-    const projectlist = document.getElementById("projectlist");
+    const todayDiv = document.getElementById("todayDiv");
     var index = projectSelectIndex();
     console.log(index);
     var projectDiv = arrayOfProjects[index];
@@ -54,6 +58,7 @@ const createCard = () => {
         const priorityHolder = document.createElement("p");
         var inbox = document.createElement("div");
         var inboxCardDiv = document.createElement("div");
+        var inboxCardDivClone = inboxCardDiv.cloneNode(true);
         var inboxExposedDiv = document.createElement("div");
         var inboxExposedBtnDiv = document.createElement("div");
         var inboxDeletebtn = document.createElement("button");
@@ -213,12 +218,11 @@ const createCard = () => {
         });
     });
 
-
-
-
-    if (index === 0) {
+    if (index === 0){
         inboxDiv.append(inboxCardDiv);
+        todayDiv.append(inboxCardDivClone);
         inboxDiv.style.display = "block";
+        
     } else if (index === parseInt(projectDiv.getAttribute("data-data-Id"))) {
         console.log(index);
         projectDiv.append(inboxCardDiv);
