@@ -1,21 +1,27 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   outline: 1px solid red;
 }
+
 body {
   margin: 0px;
   padding: 0px;
 }
+
 header {
   padding: 5px;
   background-color: #202040;
 }
+
 #navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px;
 }
+
 .icon {
   display: flex;
   justify-content: center;
@@ -24,21 +30,26 @@ header {
   height: 40px;
   color: white;
 }
+
 .taskbtn {
   width: 10%;
   padding: 5px;
 }
+
 #content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 0px;
 }
+
 #leftSide {
   padding: 15px;
 }
+
 ul {
   padding: 5px;
 }
+
 li {
   display: flex;
   justify-content: flex-start;
@@ -46,21 +57,16 @@ li {
   list-style-type: none;
   padding: 5px;
 }
+
 #inbox {
   padding: 5px;
   margin: 5px;
 }
-#today {
-  padding: 5px;
-  margin: 5px;
-}
-#nextWeek {
-  padding: 5px;
-  margin: 5px;
-}
+
 #project {
   padding: 5px;
 }
+
 #form-container {
   display: none;
   position: absolute;
@@ -70,6 +76,7 @@ li {
   z-index: 1;
   padding: 5px;
 }
+
 .editform-container {
   display: none;
   position: absolute;
@@ -79,20 +86,39 @@ li {
   z-index: 1;
   padding: 5px;
 }
+
 #form {
   display: block;
   justify-content: center;
   background-color: white;
   color: #202040;
+  padding: 10px;
+}
+
+#form-holder {
+  display: flex;
+  justify-content: start;
+  align-items: center;
   padding: 5px;
+  gap: 10px;
+}
+
+#editform-holder {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 5px;
+  gap: 10px;
 }
 
 label {
   padding: 5px;
 }
+
 #titlename {
   margin: 5px;
 }
+
 input[type="text"],
 select {
   width: 30%;
@@ -105,13 +131,20 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
 #description {
   background-color: white;
   color: black;
 }
-input[type="date"],
+
+#editdescription {
+  background-color: white;
+  color: black;
+}
+
+input[type="datetime-local"],
 select {
-  width: 50%;
+  width: 55%;
   padding: 8px 16px;
   margin: 8px 0;
   display: inline-block;
@@ -121,44 +154,76 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
 #form-submit {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 input[id="submitbtn"] {
   width: 20%;
   background-color: #202040;
   color: white;
   padding: 4px 8px;
-  margin: 8px 0;
+  margin: 8px 5px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
+
+input[id="closebtn"] {
+  width: 20%;
+  background-color: #202040;
+  color: white;
+  padding: 4px 8px;
+  margin: 8px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-size: medium;
+}
+
 input[class="updatebtn"] {
   width: 20%;
   background-color: #202040;
   color: white;
   padding: 4px 8px;
-  margin: 8px 0;
+  margin: 8px 5px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
+
+input[class="closebtn"] {
+  width: 20%;
+  background-color: #202040;
+  color: white;
+  padding: 4px 8px;
+  margin: 8px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-size: medium;
+}
+
 #rightSide {
   padding: 5px;
 }
+
 #inboxDiv {
   display: none;
   padding: 10px;
   cursor: pointer;
 }
-.inbox{
+
+.inbox {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 1fr;
@@ -167,14 +232,17 @@ input[class="updatebtn"] {
   gap: 5px;
   padding: 5px;
 }
+
 .inbox-Card {
   padding: 5px;
-  margin: 5px;
+  margin-top: 5px;
 }
+
 .inbox-Collapse {
   padding: 5px;
   margin: 5px;
 }
+
 .inbox-Exposed {
   padding: 5px;
   margin: 5px;
@@ -182,31 +250,31 @@ input[class="updatebtn"] {
   justify-content: space-between;
   align-items: center;
 }
-p{
+
+p {
   display: block;
   align-items: center;
   padding: 10px;
 }
-#todayDiv {
+
+#projectDiv {
   display: none;
   padding: 10px;
   cursor: pointer;
 }
-#nextWeekDiv {
-  display: none;
-  padding: 10px;
-  cursor: pointer;
-}
+
 #projectHolder {
   display: block;
   cursor: pointer;
   margin: 5px;
 }
+
 #projectList {
-  margin: 5px;
+  margin: 10px;
   padding: 10px;
   align-items: center;
 }
+
 #addprojectbtn {
   display: flex;
   justify-content: center;
@@ -214,10 +282,12 @@ p{
   margin: 20px;
   padding: 5px;
 }
+
 #projectbtn {
-  margin:  0 0 0 58.5%;
+  margin: 0 0 0 58.5%;
   width: 40%;
 }
+
 #projectfolder {
   display: block;
   position: absolute;
@@ -230,27 +300,33 @@ p{
   color: #202040;
   padding: 5px;
 }
+
 .projectTitle {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .projectlabel {
   padding: 10px;
   height: 100px;
 }
+
 #projectlabel {
   margin: 5px;
 }
+
 #projectId {
   margin-top: 20px;
 }
+
 .projectbtnholder {
   display: flex;
   justify-content: end;
   padding: 15px;
   gap: 5px;
 }
+
 .addproject {
   width: 20%;
   padding: 4px 8px;
@@ -261,6 +337,7 @@ p{
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
+
 .closeproject {
   width: 20%;
   padding: 4px 8px;
@@ -271,38 +348,115 @@ p{
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
-.inboxExposedbtnContainer{
+
+.inboxExposedbtnContainer {
   padding: 5px;
 }
-.moveform{
+
+#TitleNameCheckBoxDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.readbtn {
+  margin: 5px;
+}
+
+.movebtn {
+  margin: 5px;
+}
+
+.editbtn {
+  margin: 5px;
+}
+
+.inboxDeletebtn {
+  margin: 5px;
+}
+
+.priorityform {
   display: none;
   position: absolute;
   right: 175px;
-  top:100px;
+  top: 100px;
   bottom: 500px;
-  width: 200px;
+  width: 250px;
   height: 100px;
   z-index: 1;
   padding: 5px;
   background-color: white;
   color: #202040;
 }
-.projectLabel{
-  margin:5px;
+
+.priorityLabel {
+  margin: 5px;
 }
-.moveOption{
+
+.prioritySubmitbtnDiv {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px;
+}
+
+.prioritySubmitbtn {
+  margin: 5px;
+}
+
+.priorityCancelSubmitbtn {
+  margin: 5px;
+}
+
+.moveform {
+  display: none;
+  position: absolute;
+  right: 175px;
+  top: 100px;
+  bottom: 500px;
+  width: 250px;
+  height: 100px;
+  z-index: 1;
+  padding: 5px;
+  background-color: white;
+  color: #202040;
+}
+
+.projectLabel {
+  margin: 5px;
+}
+
+.moveOption {
   display: block;
 }
-.moveLabel{
+
+.moveLabel {
   margin-right: 15px;
 }
-.createdProject{
-  margin:5px;
+
+.createdProject {
+  margin: 5px;
 }
-.moveSubmitbtnDiv{
+
+.rightSideProjectDiv {
+  padding: 5px;
+  margin: 5px;
+}
+
+.moveSubmitbtnDiv {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-top: 10px;
   padding: 5px;
+}
+
+#rightProjectHolder {
+  display: none;
+  padding: 5px;
+}
+
+.rightSideProjectDiv {
+  display: none;
 }
