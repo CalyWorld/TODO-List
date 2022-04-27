@@ -13,82 +13,98 @@
 <body>
 
     <div id="content"></div>
+
     <div id="form-container">
         <form id="form">
-            <label for="titlename">Title: </label>
-            <input type="text" id="titlename" placeholder="Enter Title..." name="Title" />
-            <br />
+            <div id="form-holder">
+                <label for="titlename">Title: </label>
+                <input type="text" id="titlename" placeholder="Enter Title..." name="Title" />
+                <br />
+            </div>
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="1" cols="33">
+            <div id="form-holder">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" placeholder="Enter Description" rows="1" cols="33">
 </textarea>
-            <br />
+                <br />
+            </div>
 
-            <label for="DueDate">Due Date:</label>
-            <input type="date" id="dueDate" name="DueDate" />
-            <br />
+            <div id="form-holder">
+                <label for="DueDate">Due Date:</label>
+                <input type="datetime-local" id="dueDate" name="DueDate" />
+                <br />
+            </div>
 
-            <label for="priority">Priority:</label>
-            <select id="priority">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
-            <br />
-            <label for="read">Read:</label>
-            <input type="checkbox" name="read" id="read" />
-            <br>
+            <div id="form-holder">
+                <label for="priority">Priority:</label>
+                <select id="priority">
+                    <option value="low" selected>Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <br />
+            </div>
 
-            
-            <label for="projectLabel">Project:</label>
-            <select id="projectlist">
-                <option value="select-inbox">Inbox</option>
-            </select>
-            <br />
+            <div id="form-holder">
+                <label for="projectLabel">Project:</label>
+                <select id="projectlist">
+                    <option id="select-inbox" selected>Inbox</option>
+                </select>
+                <br />
+            </div>
 
             <div id="form-submit">
-                <input type="button" id="submitbtn" value="submit" />
+                <input type="button" id="closebtn" value="Close" />
+                <input type="button" id="submitbtn" value="Submit" />
             </div>
         </form>
     </div>
 
     <div class="editform-container">
         <form id="form">
-            <label for="titlename">Title: </label>
-            <input type="text" id="editTitlename" placeholder="Enter Title..." name="Title" />
-            <br />
+            <div id="editform-holder">
+                <label for="titlename">Title: </label>
+                <input type="text" id="editTitlename" placeholder="Enter Title..." name="Title" />
+                <br />
+            </div>
 
-            <label for="description">Description:</label>
-            <textarea id="editdescription" name="description" rows="1" cols="33">
+            <div id="editform-holder">
+                <label for="description">Description:</label>
+                <textarea id="editdescription" name="description" placeholder="Enter Description" rows="1" cols="33">
 </textarea>
-            <br />
+                <br />
+            </div>
 
-            <label for="DueDate">Due Date:</label>
-            <input type="date" id="editdueDate" name="DueDate" />
-            <br />
+            <div id="editform-holder">
+                <label for="DueDate">Due Date:</label>
+                <input type="datetime-local" id="editdueDate" name="DueDate" />
+                <br />
+            </div>
 
-            <label for="priority">Priority:</label>
-            <select id="editpriority">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
-            <br />
+            <div id="editform-holder">
+                <label for="priority">Priority:</label>
+                <select id="editpriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <br />
+            </div>
 
-            <label for="read">Read:</label>
-            <input type="checkbox" name="read" id="editread" />
-            <br>
-
-            <label for="projectlabel">Project:</label>
-            <select id="editprojectlist">
-                <option value="inbox">Inbox</option>
-            </select>
-            <br />
+            <div id="editform-holder">
+                <label for="projectlabel">Project:</label>
+                <select id="editprojectlist">
+                    <option value="inbox">Inbox</option>
+                </select>
+                <br />
+            </div>
 
             <div id="form-submit">
+                <input type="button" class="closebtn" value="Cancel" />
                 <input type="button" class="updatebtn" value="update" />
             </div>
-        </form>
+    </div>
+    </form>
     </div>
 </body>
 

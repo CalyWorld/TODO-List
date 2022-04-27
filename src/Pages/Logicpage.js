@@ -162,6 +162,7 @@ const createCard = () => {
 
         priorityForm.append(priorityLabel);
         priorityForm.append(priorityClone);
+        priorityClone.value = i.priority;
         priorityForm.append(prioritySubmitbtnDiv);
 
         priorityForm.style.display = "block";
@@ -181,15 +182,16 @@ const createCard = () => {
             priorityForm.style.display = "none";
         });
 
-        cancelSubmitbtn.addEventListener("click", () => {
-            priorityForm.style.display = "none";
-        });
-
-        Todo.prototype.toggle = function () {
+         Todo.prototype.toggle = function () {
             const priorityIndex = priorityClone.options[priorityClone.selectedIndex].text;
             i.priority = priorityIndex;
             console.log(priorityIndex);
         }
+
+        cancelSubmitbtn.addEventListener("click", () => {
+            priorityForm.style.display = "none";
+        });
+
     });
     
     readbtn.addEventListener("click", () => {
@@ -294,8 +296,6 @@ const createCard = () => {
             moveForm.style.display = "none";
         });
     });
-
-
 
 };
 

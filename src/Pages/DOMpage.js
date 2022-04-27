@@ -1,6 +1,4 @@
-
 const arrayOfProjects = [];
-
 const openForm = () => {
     const formContainer = document.getElementById("form-container");
     const taskbtn = document.querySelector(".taskbtn");
@@ -15,56 +13,31 @@ const openForm = () => {
 const openInbox = () => {
     const btn = document.querySelectorAll("div");
     const inboxDiv = document.getElementById("inboxDiv");
-    const todayDiv = document.getElementById("todayDiv");
-    const nextWeekDiv = document.getElementById("nextWeekDiv");
     const projectList = document.getElementById("projectList");
     const projectHolder = document.getElementById("rightProjectHolder");
+
     projectList.style.display = "none";
     btn.forEach((button) => {
         button.addEventListener("click", (e) => {
             if (e.target.id === "inbox") {
                 if ((inboxDiv.style.display = "none")) {
                     inboxDiv.style.display = "block";
-                    todayDiv.style.display = "none";
-                    nextWeekDiv.style.display = "none";
-                    projectList.style.display = "none";
-                    projectHolder.style.display = "none";
-                }
-            } else if (e.target.id === "today") {
-                if ((todayDiv.style.display = "none")) {
-                    todayDiv.style.display = "block";
-                    inboxDiv.style.display = "none";
-                    nextWeekDiv.style.display = "none";
-                    projectList.style.display = "none";
-                    projectHolder.style.display = "none";
-
-                }
-            } else if (e.target.id === "nextWeek") {
-                if ((nextWeekDiv.style.display = "none")) {
-                    nextWeekDiv.style.display = "block";
-                    inboxDiv.style.display = "none";
-                    todayDiv.style.display = "none";
-                    projectList.style.display = "none";
                     projectHolder.style.display = "none";
                 }
             }
             else if (e.target.id === "project") {
                 if (projectList.style.display === "none") {
                     projectList.style.display = "block";
-                    projectHolder.style.display = "block";
-                    nextWeekDiv.style.display = "none";
-                    inboxDiv.style.display = "none";
-                    todayDiv.style.display = "none";
+                    // inboxDiv.style.display = "none";
                 } else if (projectList.style.display = "block") {
                     projectList.style.display = "none";
-                    projectHolder.style.display = "none";
                 }
             }
         });
     });
 
 };
-const addProject = () => {
+const createProjectContainer = () => {
     const projectbtn = document.getElementById("projectbtn");
     projectbtn.addEventListener("click", () => {
         const content = document.getElementById("content");
@@ -139,10 +112,12 @@ const createProject = () => {
         var projectOption = document.createElement("option");
 
         var projectDivContainer = document.createElement("div");
+        var projectDivHead = document.createElement("h1");
         projectDivContainer.dataset.dataId = `${arrayOfProjects.length}`;
-        projectDivContainer.setAttribute("id", `${projectId}`);
+        projectDivContainer.setAttribute("id", "newProject");
         projectDivContainer.classList.add("rightSideProjectDiv");
-        projectDivContainer.textContent = projectId;
+        projectDivHead.textContent = projectId;
+        projectDivContainer.append(projectDivHead);
 
         createdProject.setAttribute("id", "createdProject");
         createdProject.dataset.dataId = `${arrayOfProjects.length}`
@@ -150,35 +125,39 @@ const createProject = () => {
 
         projectOption.dataset.dataId = `${arrayOfProjects.length}`
         projectList.style.display = "block";
-        projectDivContainer.style.display = "none";
     }
+
     createdProject.textContent = projectId;
     projectOption.textContent = projectId;
     arrayOfProjects.push(projectDivContainer);
     select.append(projectOption)
     projectList.append(createdProject);
     projectHolder.append(projectDivContainer);
+
     console.log(arrayOfProjects);
 
     createdProject.addEventListener("click", () => {
-        let selectedProject = parseInt(createdProject.getAttribute("data-data-Id"));
-        let index = parseInt(projectDivContainer.getAttribute("data-data-Id"));
+        const projectHolder = document.getElementById("rightProjectHolder");
+        let selectedProject = parseInt(createdProject.getAttribute("data-data-id"));
+        let index = parseInt(projectDivContainer.getAttribute("data-data-id"));
+        const inboxDiv = document.getElementById("inboxDiv");
         if (selectedProject === index) {
-            if(projectDivContainer.style.display === "none"){
-            projectDivContainer.style.display = "block";
-            }else{
+            if (projectDivContainer.style.display === "block") {
                 projectDivContainer.style.display = "none";
+            } else {
+                projectDivContainer.style.display = "block";
+                projectHolder.style.display = "block";
+                inboxDiv.style.display = "none";
             }
         }
     });
 
 };
 
-
 const DOMpage = () => {
     openForm();
     openInbox();
-    addProject();
+    createProjectContainer();
 };
 
 export { arrayOfProjects };
