@@ -1,11 +1,12 @@
 import { arrayOfProjects } from "./DOMpage";
 import { projectSelectIndex } from "./Homepage";
 import { format } from "date-fns";
-const list = [];
+let list = [];
 let nextListId = 0;
 let moveSelectIndex;
 let moveProjectDiv;
-
+let currentDate = format(new Date(), "yyyy-MM-dd");
+const formatDueDate = (dueDate) => format(new Date(dueDate), "do MMMM yyyy");
 
 class Todo {
     constructor(title, description, dueDate, priority, id) {
@@ -17,17 +18,28 @@ class Todo {
     }
 }
 
-const addListToLibrary = () => {
+window.addEventListener("load", ()=>{
+    // getLocalStorage();
+    // addListToLibrary();
+    // createCard();
+    // list.forEach(createCard);
+});
+
+const addListToLibrary = () =>{
     const titleName = document.getElementById("titlename").value;
     const descriptionName = document.getElementById("description").value;
     const dueDateNo = document.getElementById("dueDate").value;
     let priorityId = document.getElementById("priority").value;
     let project = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId);
     list.push(project);
-    nextListId++;
+    setLocalStorage();
     createCard();
+    nextListId++;
     console.log(list);
+}
 
+function setLocalStorage(){
+   window.localStorage.setItem("todo", JSON.stringify(list));
 }
 
 const createCard = () => {
@@ -41,7 +53,6 @@ const createCard = () => {
     console.log(index);
     let projectDiv = arrayOfProjects[index];
     console.log(projectDiv);
-
     let inboxCardDiv;
 
     for (let i of list) {
@@ -56,16 +67,17 @@ const createCard = () => {
         inboxCardDiv = document.createElement("div");
         const inboxExposedDiv = document.createElement("div");
         const inboxExposedBtnDiv = document.createElement("div");
-        const TitleNameCheckBoxDiv = document.createElement("div");
+        const TitleCheckBoxDiv = document.createElement("div");
         const inboxDeletebtn = document.createElement("button");
         const readbtn = document.createElement("input");
         const movebtn = document.createElement("button");
         const editbtn = document.createElement("button");
         const editpriority = document.createElement("button");
 
-        TitleNameCheckBoxDiv.setAttribute("id", "TitleNameCheckBoxDiv");
+        TitleCheckBoxDiv.setAttribute("id", "TitleNameCheckBoxDiv");
         inboxCardDiv.setAttribute("id", `${i.id}`);
 
+      
         inboxDeletebtn.setAttribute("id", `${i.id}`);
         inboxDeletebtn.classList.add("inboxDeletebtn")
         inboxExposedBtnDiv.classList.add("inboxExposedbtnContainer");
@@ -94,9 +106,9 @@ const createCard = () => {
         editpriority.textContent = `Priority:${i.priority}`;
 
         inboxExposedTitleContainer.textContent = `${i.title}`;
-        TitleNameCheckBoxDiv.append(readbtn);
-        TitleNameCheckBoxDiv.append(inboxExposedTitleContainer);
-        inboxExposedDiv.append(TitleNameCheckBoxDiv)
+        TitleCheckBoxDiv.append(readbtn);
+        TitleCheckBoxDiv.append(inboxExposedTitleContainer);
+        inboxExposedDiv.append(TitleCheckBoxDiv)
         inboxExposedBtnDiv.append(movebtn);
         inboxExposedBtnDiv.append(editbtn);
         inboxExposedBtnDiv.append(editpriority);
@@ -109,10 +121,11 @@ const createCard = () => {
         inbox.append(dueDateHolder);
         inbox.append(priorityHolder);
         formContainer.style.display = "none";
+        setLocalStorage();
 
         console.log(list);
 
-        inboxExposedDiv.addEventListener("click", e => {
+        inboxExposedDiv.addEventListener("click", e =>{
             if (e.target.className === "inbox-Exposed") {
                 if (inbox.style.display === "none") {
                     inbox.style.display = "flex";
@@ -122,10 +135,12 @@ const createCard = () => {
             }
         });
 
-        inboxDeletebtn.addEventListener("click", () => {
+        inboxDeletebtn.addEventListener("click", () =>{
             list.splice(list.findIndex(current => {
                 return current.id === i.id;
             }), 1);
+            setLocalStorage();
+            window.localStorage.removeItem("task");
             inboxCardDiv.remove();
             console.log(list);
         });
@@ -156,13 +171,15 @@ const createCard = () => {
             priorityForm.append(priorityLabel);
             priorityForm.append(priorityClone);
             priorityClone.value = i.priority;
+            setLocalStorage();
             priorityForm.append(prioritySubmitbtnDiv);
 
             priorityForm.style.display = "block";
             document.body.append(priorityForm);
 
 
-            prioritySubmitbtnDiv.append(prioritySubmitbtn, cancelSubmitbtn);
+            prioritySubmitbtnDiv.append(prioritySubmitbtn)
+            prioritySubmitbtnDiv.append(cancelSubmitbtn);
             console.log(list);
 
             prioritySubmitbtn.addEventListener("click", () => {
@@ -170,7 +187,6 @@ const createCard = () => {
                     list.findIndex((current) => {
                         return current.id === i.id;
                     })].toggle();
-
                 editpriority.textContent = `Priority:${i.priority}`;
                 priorityForm.style.display = "none";
             });
@@ -326,3 +342,4 @@ const Logicpage = () => {
 
 
 export default Logicpage;
+export { list };

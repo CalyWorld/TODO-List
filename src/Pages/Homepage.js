@@ -1,4 +1,5 @@
 import { arrayOfProjects } from "./DOMpage";
+import { list } from "./Logicpage";
 export {projectSelectIndex};
 let index;
 const projectSelect = document.getElementById("projectlist");
@@ -112,6 +113,7 @@ const Homepage = () => {
   document.body.append(createHeader());
   document.body.append(createContent());
   SelectProject();
+  console.log(list);
 };
 
 
