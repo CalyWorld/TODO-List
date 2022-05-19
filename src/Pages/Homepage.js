@@ -1,8 +1,7 @@
 import { arrayOfProjects } from "./DOMpage";
-import { list } from "./Logicpage";
-export {projectSelectIndex};
-let index;
+
 const projectSelect = document.getElementById("projectlist");
+
 const createHeader = () => {
   const header = document.createElement("header");
   const navbar = document.createElement("div");
@@ -19,7 +18,6 @@ const createHeader = () => {
   navbar.append(iconDiv);
   navbar.append(addTaskbtn);
   header.append(navbar);
-
   return header;
 };
 
@@ -40,6 +38,7 @@ const createContent = () => {
 
   const rightinboxDiv = document.createElement("div");
   const rightProjectHolderDiv = document.createElement("div");
+  const inboxCardDivHolder = document.createElement("div");
 
 
   const inboxHead = document.createElement("h1");
@@ -62,6 +61,7 @@ const createContent = () => {
 
 
   inboxHead.classList.add("inboxhead");
+  inboxCardDivHolder.setAttribute("id", "inboxCardDiv");
 
 
   inboxHead.textContent = "Inbox";
@@ -80,8 +80,7 @@ const createContent = () => {
   leftSideSection.append(ul);
 
   rightinboxDiv.append(inboxHead);
-
-
+  rightinboxDiv.append(inboxCardDivHolder);
 
   rightSideSection.append(rightinboxDiv);
   rightSideSection.append(rightProjectHolderDiv);
@@ -99,22 +98,20 @@ const SelectProject = () => {
   console.log(arrayOfProjects);
 };
 
-const projectSelectIndex = () =>{
-  index = projectSelect.selectedIndex;
+
+const projectSelectIndex = () => {
+  let index = projectSelect.selectedIndex;
   return index;
 };
 
-
-
 projectSelect.addEventListener("change", projectSelectIndex);
-
 
 const Homepage = () => {
   document.body.append(createHeader());
-  document.body.append(createContent());
   SelectProject();
-  console.log(list);
 };
 
 
 export default Homepage;
+export{projectSelectIndex};
+export {createContent};

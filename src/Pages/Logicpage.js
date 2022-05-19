@@ -7,9 +7,8 @@ let completed = false;
 let moveSelectIndex;
 let moveProjectDiv;
 let content = createContent();
-// let currentDate = format(new Date(), "yyyy-MM-dd");
-// const formatDueDate = (dueDate) => format(new Date(dueDate), "do MMMM yyyy");
-// const nameInput = document.querySelector('input');
+let currentDate = format(new Date(), "dd-MM-yyyy");
+
 class Todo {
     constructor(title, description, dueDate, priority, id, completed) {
         this.title = title;
@@ -33,8 +32,6 @@ const createCard = (task) => {
     console.log(index);
     let projectDiv = arrayOfProjects[index];
     console.log(projectDiv);
-    // let dateFomart = format(new Date(i.dueDate), "MM-dd-yyyy hh:mm a");
-    // console.log(dateFomart);
     const titleHolder = document.createElement("p");
     const descriptionHolder = document.createElement("p");
     const dueDateHolder = document.createElement("p");
@@ -72,7 +69,7 @@ const createCard = (task) => {
 
     titleHolder.textContent = `Title: ${task.title}`;
     descriptionHolder.textContent = `Description: ${task.description}`;
-    dueDateHolder.textContent = `Due Date: ${task.dueDate}`;
+    dueDateHolder.textContent = `Due Date: ${currentDate}`;
     priorityHolder.textContent = `Priority: ${task.priority}`;
     inboxDeletebtn.textContent = "Delete";
     movebtn.textContent = "Move";
