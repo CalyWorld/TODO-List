@@ -65,6 +65,7 @@ const createCard = (task) => {
     inbox.style.display = "none";
     inboxCardDiv.setAttribute("class", `task ${task.complete ? "completed" : ""}`);
     inboxCardDiv.style.padding = "5px";
+    inboxCardDiv.style.borderStyle = "solid";
     inboxExposedDiv.classList.add("inbox-Exposed");
 
     titleHolder.textContent = `Title: ${task.title}`;

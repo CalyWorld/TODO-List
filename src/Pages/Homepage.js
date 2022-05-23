@@ -1,5 +1,5 @@
 import { arrayOfProjects } from "./DOMpage";
-import Icon from "./images/todolist.png";
+import Icon from "./images/todo.png";
 
 const projectSelect = document.getElementById("projectlist");
 
@@ -15,6 +15,7 @@ const createHeader = () => {
 
   const myIcon = new Image();
   myIcon.src = Icon;
+  myIcon.setAttribute("id", "image-icon");
   iconDiv.append(myIcon);
   addTaskbtn.textContent = "+";
 
