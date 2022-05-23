@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 
 body {
@@ -21,13 +21,16 @@ header {
   align-items: center;
   padding: 5px;
 }
-
+#image-icon{
+  width: 50px;
+  height: 50px;
+}
 .icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   color: white;
 }
 
@@ -231,11 +234,6 @@ input[class="closebtn"] {
   align-items: center;
   gap: 5px;
   padding: 5px;
-}
-
-.inbox-Card {
-  padding: 5px;
-  margin-top: 5px;
 }
 
 .inbox-Collapse {
