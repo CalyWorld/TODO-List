@@ -1,4 +1,3 @@
-
 const openForm = () => {
     const formContainer = document.getElementById("form-container");
     const taskbtn = document.querySelector(".taskbtn");
@@ -35,26 +34,25 @@ const openInbox = () => {
             }
         });
     });
+}
 
-};
-
-let arrayOfProjects = [];
-
-
-const createProject = () => {
+const createProject = (projectTitleName) => {
     const select = document.getElementById("projectlist");
     const projectList = document.getElementById("projectList");
     const projectHolder = document.getElementById("rightProjectHolder");
-    const projectId = document.getElementById("projectId").value;
+    let createdProject;
+    let projectOption;
+    let projectDivContainer;
+    let projectDivHead;
     for (let i = 0; i < arrayOfProjects.length; i++) {
-        var createdProject = document.createElement("div");
-        var projectOption = document.createElement("option");
-        var projectDivContainer = document.createElement("div");
-        var projectDivHead = document.createElement("h1");
+        createdProject = document.createElement("div");
+        projectOption = document.createElement("option");
+        projectDivContainer = document.createElement("div");
+        projectDivHead = document.createElement("h1");
         projectDivContainer.dataset.dataId = `${arrayOfProjects.length}`;
         projectDivContainer.setAttribute("id", "newProject");
         projectDivContainer.classList.add("rightSideProjectDiv");
-        projectDivHead.textContent = projectId;
+        projectDivHead.textContent = projectTitleName;
         projectDivContainer.append(projectDivHead);
 
         createdProject.setAttribute("id", "createdProject");
@@ -65,8 +63,8 @@ const createProject = () => {
         projectList.style.display = "block";
     }
 
-    createdProject.textContent = projectId;
-    projectOption.textContent = projectId;
+    createdProject.textContent = projectTitleName;
+    projectOption.textContent = projectTitleName;
     arrayOfProjects.push(projectDivContainer);
     select.append(projectOption)
     projectList.append(createdProject);
@@ -89,8 +87,8 @@ const createProject = () => {
             }
         }
     });
+    localStorage.setItem("projects", JSON.stringify(arrayOfProjects));
 }
-
 const createProjectContainer = () => {
     const projectbtn = document.getElementById("projectbtn");
     projectbtn.addEventListener("click", () => {
@@ -149,20 +147,36 @@ const createProjectContainer = () => {
         });
 
         addprojectbtn.addEventListener("click", () => {
-            createProject();
+            let projectTitleName = input.value;
+            addProjectToLibrary(projectTitleName);
             projectFolder.remove();
         });
     });
+    localStorage.setItem("projects", JSON.stringify(arrayOfProjects));
 
 };
 
+let arrayOfProjects =  [];
 
+
+const addSelectInbox = () => {
+    const selectInbox = document.getElementById("select-inbox");
+    arrayOfProjects.push(selectInbox);
+}
+
+const addProjectToLibrary = (projectTitleName) => {
+    createProject(projectTitleName);
+    localStorage.setItem("projects", JSON.stringify(arrayOfProjects));
+    console.log(arrayOfProjects);
+}
 const DOMpage = () => {
     openForm();
     openInbox();
     createProjectContainer();
+    addSelectInbox();
+    // document.body.append(domContent);
 };
 
 export { arrayOfProjects };
-// export {createProject};
+export {createProject};
 export default DOMpage;

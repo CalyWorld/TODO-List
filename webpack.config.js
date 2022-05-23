@@ -1,10 +1,18 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/Pages/Homepage.js',
   mode:"development",
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  // modules:{
+  //   rules:[
+  //     {
+  //       test: /\.(png|svg|jpg|jpeg|gif)$/i,
+  //       type: 'asset/resource',
+  //     },
+  //   ]
+  // }
 };

@@ -1,4 +1,5 @@
 import { arrayOfProjects } from "./DOMpage";
+import Icon from "./images/todolist.png";
 
 const projectSelect = document.getElementById("projectlist");
 
@@ -12,8 +13,11 @@ const createHeader = () => {
   iconDiv.classList.add("icon");
   addTaskbtn.classList.add("taskbtn");
 
-  iconDiv.textContent = "icon";
+  const myIcon = new Image();
+  myIcon.src = Icon;
+  iconDiv.append(myIcon);
   addTaskbtn.textContent = "+";
+
 
   navbar.append(iconDiv);
   navbar.append(addTaskbtn);
@@ -92,13 +96,6 @@ const createContent = () => {
   return contentContainer;
 };
 
-const SelectProject = () => {
-  const selectInbox = document.getElementById("select-inbox");
-  arrayOfProjects.push(selectInbox);
-  console.log(arrayOfProjects);
-};
-
-
 const projectSelectIndex = () => {
   let index = projectSelect.selectedIndex;
   return index;
@@ -108,7 +105,6 @@ projectSelect.addEventListener("change", projectSelectIndex);
 
 const Homepage = () => {
   document.body.append(createHeader());
-  SelectProject();
 };
 
 

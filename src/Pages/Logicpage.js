@@ -1,13 +1,12 @@
-import { arrayOfProjects } from "./DOMpage";
-import { projectSelectIndex } from "./Homepage";
-import { createContent } from "./Homepage";
+import { arrayOfProjects} from "./DOMpage";
+import {createContent, projectSelectIndex } from "./Homepage";
 import { format } from "date-fns";
 let nextListId = 0;
 let completed = false;
 let moveSelectIndex;
 let moveProjectDiv;
-let content = createContent();
 let currentDate = format(new Date(), "dd-MM-yyyy");
+let content  = createContent();
 
 class Todo {
     constructor(title, description, dueDate, priority, id, completed) {
@@ -50,11 +49,11 @@ const createCard = (task) => {
 
     TitleCheckBoxDiv.setAttribute("id", "TitleNameCheckBoxDiv");
     inboxCardDiv.setAttribute("id", `${task.id}`);
-    // inboxDeletebtn.setAttribute("id", `${task.id}`);
     inboxDeletebtn.classList.add("inboxDeletebtn")
     inboxExposedBtnDiv.classList.add("inboxExposedbtnContainer");
     readbtn.setAttribute("id", `${task.id}`);
     readbtn.setAttribute("type", "checkbox");
+    readbtn.setAttribute("class", `check ${task.complete? "checked": ""}`);
     movebtn.setAttribute("id", `${task.id}`);
     movebtn.classList.add("movebtn");
     editbtn.setAttribute("id", `${task.id}`);
@@ -64,7 +63,8 @@ const createCard = (task) => {
 
     inbox.classList.add("inbox-Collapse");
     inbox.style.display = "none";
-    inboxCardDiv.classList.add("inbox-Card");
+    inboxCardDiv.setAttribute("class", `task ${task.complete ? "completed" : ""}`);
+    inboxCardDiv.style.padding = "5px";
     inboxExposedDiv.classList.add("inbox-Exposed");
 
     titleHolder.textContent = `Title: ${task.title}`;
@@ -99,9 +99,8 @@ const createCard = (task) => {
         inboxDiv.style.display = "block";
         projectHolder.style.display = "none";
         console.log(list);
-    } else if (index == parseInt(projectDiv.getAttribute("data-data-id"))) {
+    }else if(arrayOfProjects.filter((e) => e == task)){
         console.log(index);
-        // inboxDiv.style.display = "none";
         projectDiv.append(inboxCardDiv);
         projectDiv.style.display = "block";
         projectHolder.style.display = "block";
@@ -184,26 +183,18 @@ const createCard = (task) => {
     });
 
     readbtn.addEventListener("click", (e) => {
-        if (e.target.type === "checkbox") {
-            toggle(e.target.id);
-            // if(task.complete = true){
-            //     e.target.parentNode.parentNode.style.textDecoration = "line-through";
-            // }else if(task.complete = false){
-            //     e.target.parentNode.parentNode.style.textDecoration = "none";
-            // }
-        }
-        localStorage.setItem("tasks", JSON.stringify(list));
+        taskComplete(e.target.id);
+        e.target.parentNode.parentNode.parentNode.classList.toggle("completed");
         console.log(list);
     });
-
-    function toggle(id) {
+    function taskComplete(id) {
         list.forEach(function (task) {
             if (task.id == id) {
                 task.complete = !task.complete;
             }
         });
+        localStorage.setItem("tasks", JSON.stringify(list));
     }
-
     editbtn.addEventListener("click", (e) => {
         let inboxCardDivIndex = e.target.parentNode.parentNode.parentNode.id;
         if (e.target.id === inboxCardDivIndex) {
@@ -306,7 +297,6 @@ const createCard = (task) => {
 
 let list = JSON.parse(localStorage.getItem("tasks")) || [];
 list.forEach(createCard);
-
 const addListToLibrary = (titleName, descriptionName, dueDateNo, priorityId) => {
     let task = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId, completed);
     list.push(task);
@@ -336,8 +326,6 @@ const Logicpage = () => {
     submitForm();
     closeForm();
 };
-
-
 
 export default Logicpage;
 export { list };  
