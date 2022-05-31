@@ -40,14 +40,14 @@ const createCard = (task) => {
     const inboxCardDiv = document.createElement("div");
     const inboxExposedDiv = document.createElement("div");
     const inboxExposedBtnDiv = document.createElement("div");
-    const TitleCheckBoxDiv = document.createElement("div");
+    const TitleBoxDiv = document.createElement("div");
     const inboxDeletebtn = document.createElement("button");
     const readbtn = document.createElement("input");
     const movebtn = document.createElement("button");
     const editbtn = document.createElement("button");
     const editpriority = document.createElement("button");
 
-    TitleCheckBoxDiv.setAttribute("id", "TitleNameCheckBoxDiv");
+    TitleBoxDiv.setAttribute("id", "TitleNameCheckBoxDiv");
     inboxCardDiv.setAttribute("id", `${task.id}`);
     inboxDeletebtn.classList.add("inboxDeletebtn")
     inboxExposedBtnDiv.classList.add("inboxExposedbtnContainer");
@@ -78,9 +78,9 @@ const createCard = (task) => {
     editpriority.textContent = `Priority:${task.priority}`;
 
     inboxExposedTitleContainer.textContent = `${task.title}`;
-    TitleCheckBoxDiv.append(readbtn);
-    TitleCheckBoxDiv.append(inboxExposedTitleContainer);
-    inboxExposedDiv.append(TitleCheckBoxDiv)
+    TitleBoxDiv.append(readbtn);
+    TitleBoxDiv.append(inboxExposedTitleContainer);
+    inboxExposedDiv.append(TitleBoxDiv)
     inboxExposedBtnDiv.append(movebtn);
     inboxExposedBtnDiv.append(editbtn);
     inboxExposedBtnDiv.append(editpriority);
@@ -298,10 +298,12 @@ const createCard = (task) => {
 
 let list = JSON.parse(localStorage.getItem("tasks")) || [];
 list.forEach(createCard);
-const addListToLibrary = (titleName, descriptionName, dueDateNo, priorityId) => {
+
+
+const addListToLibrary = (titleName, descriptionName, dueDateNo, priorityId, callBack) => {
     let task = new Todo(titleName, descriptionName, dueDateNo, priorityId, nextListId, completed);
     list.push(task);
-    createCard(task);
+    callBack(task);
     localStorage.setItem("tasks", JSON.stringify(list));
     console.log(list);
 }
@@ -311,7 +313,7 @@ const submitForm = () => {
         const descriptionName = document.getElementById("description").value;
         const dueDateNo = document.getElementById("dueDate").value;
         let priorityId = document.getElementById("priority").value;
-        addListToLibrary(titleName, descriptionName, dueDateNo, priorityId);
+        addListToLibrary(titleName, descriptionName, dueDateNo, priorityId, createCard);
     });
 };
 const closeForm = () => {
